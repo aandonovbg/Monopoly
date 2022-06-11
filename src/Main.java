@@ -2,15 +2,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void askForPlayers(){
-
-        System.out.println("Моля изберет брой играчи от 1 до 4");
-        System.out.print("Брой играчи-> ");
+//РђРЅС‚РѕРЅ
+        System.out.println("ГЊГ®Г«Гї ГЁГ§ГЎГҐГ°ГҐГІ ГЎГ°Г®Г© ГЁГЈГ°Г Г·ГЁ Г®ГІ 1 Г¤Г® 4");
+        System.out.print("ГЃГ°Г®Г© ГЁГЈГ°Г Г·ГЁ-> ");
     }
    public static String playersNames(String[]array,int playersCount){
         Scanner sc=new Scanner(System.in);
         int[] playersNames=new int[playersCount-1];
         for (int i = 0; i <array.length ; i++) {
-            System.out.print("Играч"+i+"-> ");
+            System.out.print("Г€ГЈГ°Г Г·"+i+"-> ");
             String Name= sc.nextLine();
 
         }
@@ -24,16 +24,16 @@ public class Main {
         int players= sc.nextInt();
         int strLength=players-1;
         if (players>=1&&players<=4){
-            System.out.println("Въедете имена на играчите");
+            System.out.println("Г‚ГєГҐГ¤ГҐГІГҐ ГЁГ¬ГҐГ­Г  Г­Г  ГЁГЈГ°Г Г·ГЁГІГҐ");
           String[] playersNames=new String[strLength];
             for (int i = 0; i <playersNames.length ; i++) {
-                System.out.print("Играч"+(i+1)+"-> ");
+                System.out.print("Г€ГЈГ°Г Г·"+(i+1)+"-> ");
                 playersNames[i] = sc.nextLine();
                 System.out.println(playersNames[0]);
             }
 
         }else {
-            System.out.println("Невалиден избор");
+            System.out.println("ГЌГҐГўГ Г«ГЁГ¤ГҐГ­ ГЁГ§ГЎГ®Г°");
         }
     }
 }
