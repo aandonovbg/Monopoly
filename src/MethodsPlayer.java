@@ -13,8 +13,8 @@ public class MethodsPlayer {
     }
 
     public static String[] initializePlayersNames(int n) {
-        Scanner sc = new Scanner(System.in);
         String[] players = new String[n];
+        Scanner sc = new Scanner(System.in);
         for (int i = 0; i < n; i++) {
             System.out.print("Player " + (i + 1) + " name->");
             players[i]= sc.nextLine();
@@ -63,20 +63,20 @@ public class MethodsPlayer {
         playersNames[iteration] = name;
     }
 
-    public static int getPlayerMoney(int n, int[] playersMoney) {
-        return playersMoney[n];
+    public static int getPlayerMoney(int[] playersMoney,int iteration ) {
+        return playersMoney[iteration];
     }
 
-    public static void setPlayerMoney(int n, int[] playersMoney, int money) {
+    public static void setPlayerMoney(int[] playersMoney,int n, int money) {
         playersMoney[n] = money;
     }
 
-    public static int getPlayerPosition(int n, int[] playersPosition) {
-        return playersPosition[n];
+    public static int getPlayerPosition(int[] playersPosition,int iteration) {
+        return playersPosition[iteration];
     }
 
-    public static void setPlayerPosition(int[] playersPosition, int iteration,int position) {
-        playersPosition[iteration] += position;
+    public static void setPlayerPosition(int[] playersPosition,int iteration, int diceSum) {
+        playersPosition[iteration] += diceSum;
     }
 
     public static boolean getPlayerInJail(int n, boolean[] playersInJail) {

@@ -8,20 +8,16 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        MethodsField.initializeFieldsNamesAndOwners();
-
         System.out.println("Welcome to Monopoly :)");
         System.out.print("How many Players are going to play->");
         int n = MethodsPlayer.checkPlayerCount();
 
+        String[][] fields=MethodsField.initializeFieldsNamesAndOwners();
         String[] players = MethodsPlayer.initializePlayersNames(n);
-        //MethodsPlayer.initializePlayersNames(n);
-        int[] money=MethodsPlayer.initializePlayersMoney(n);
-        int[]positions=MethodsPlayer.initializePlayersPosition(n);
-        boolean[] PlayersInJail=MethodsPlayer.initializePlayersInJail(n);
-        int[] PlayersJailTimeCounter=MethodsPlayer.initializePlayersJailTimeCounter(n);
-
-        PlayGame.startGame(players,money,positions,PlayersInJail,PlayersJailTimeCounter);
-
+        int []money=MethodsPlayer.initializePlayersMoney(n);
+        int [] position=MethodsPlayer.initializePlayersPosition(n);
+        boolean [] playersInJail=MethodsPlayer.initializePlayersInJail(n);
+        int [] playersJailTimeCounter=MethodsPlayer.initializePlayersJailTimeCounter(n);
+PlayGame.startGame(fields,players,money,position,playersInJail,playersJailTimeCounter);
     }
 }
