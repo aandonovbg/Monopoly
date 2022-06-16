@@ -1,15 +1,13 @@
 import java.util.Arrays;
 
 public class MethodsField {
-    public static void initializeFieldsNamesAndOwners() {
-        String[][] fieldsNamesAndOwners = new String[2][40];
-        /*{"GO","Mediterranean Avenue","Community Chest","Baltic Avenue","Income Tax","Reading Railroad","Oriental Avenue","Chance",
-        "Vermont Avenue","Connecticut Avenue","Jail","St. Charles Place", "Electric Company","States Avenue","Virginia Avenue",
-        "Pennsylvania Railroad","St. James Place","Community Chest","Tennessee Avenue","New York Avenue","Free Parking","Kentucky Avenue",
-        "Chance","Indiana Avenue","Illinois Avenue","Short Line Railroad","Atlantic Avenue","Ventnor Avenue","Water Works",
-        "Marvin Gardens","Go To Jail","Pacific Avenue","North Carolina Avenue","Community Chest","Pennsylvania Avenue","B&O Railroad",
-        "Chance","Park Place","Luxury Tax","Boardwalk"},
-        {"GO","","Community Chest","",}*/
+    public static String[][] initializeFieldsNamesAndOwners() {
+        //[0][0]=fieldsNames
+        //[1][0]=fieldsOwners
+        //[2][0]=fieldsPrice
+        //[3][0]=fieldsRent
+        String[][] fieldsNamesAndOwners = new String[4][40];
+
         fieldsNamesAndOwners[0][0] ="GO";
         fieldsNamesAndOwners[0][1] ="Mediterranean Avenue";
         fieldsNamesAndOwners[0][2] ="Community Chest";
@@ -50,11 +48,116 @@ public class MethodsField {
         fieldsNamesAndOwners[0][37] ="Park Place";
         fieldsNamesAndOwners[0][38] ="Luxury Tax";
         fieldsNamesAndOwners[0][39] ="Boardwalk";
+
         Arrays.fill(fieldsNamesAndOwners[1], "");
-        System.out.println(Arrays.deepToString(fieldsNamesAndOwners).replace("[","\n").replace("]","\n"));
+        //Community Chest=0
+        //Income Tax=1
+        //Chance=2
+        //Luxury Tax=3
+        fieldsNamesAndOwners[2][0] ="GO";
+        fieldsNamesAndOwners[2][1] ="60";
+        fieldsNamesAndOwners[2][2] ="Community Chest";
+        fieldsNamesAndOwners[2][3] ="60";
+        fieldsNamesAndOwners[2][4] ="Income Tax";
+        fieldsNamesAndOwners[2][5] ="200";
+        fieldsNamesAndOwners[2][6] ="100";
+        fieldsNamesAndOwners[2][7] ="Chance";
+        fieldsNamesAndOwners[2][8] ="100";
+        fieldsNamesAndOwners[2][9] ="120";
+        fieldsNamesAndOwners[2][10] ="Jail";
+        fieldsNamesAndOwners[2][11] ="140";
+        fieldsNamesAndOwners[2][12] ="150";
+        fieldsNamesAndOwners[2][13] ="140";
+        fieldsNamesAndOwners[2][14] ="160";
+        fieldsNamesAndOwners[2][15] ="200";
+        fieldsNamesAndOwners[2][16] ="180";
+        fieldsNamesAndOwners[2][17] ="Community Chest";
+        fieldsNamesAndOwners[2][18] ="180";
+        fieldsNamesAndOwners[2][19] ="200";
+        fieldsNamesAndOwners[2][20] ="";
+        fieldsNamesAndOwners[2][21] ="220";
+        fieldsNamesAndOwners[2][22] ="Chance";
+        fieldsNamesAndOwners[2][23] ="220";
+        fieldsNamesAndOwners[2][24] ="240";
+        fieldsNamesAndOwners[2][25] ="200";
+        fieldsNamesAndOwners[2][26] ="260";
+        fieldsNamesAndOwners[2][27] ="260";
+        fieldsNamesAndOwners[2][28] ="150";
+        fieldsNamesAndOwners[2][29] ="280";
+        fieldsNamesAndOwners[2][30] ="Go To Jail";
+        fieldsNamesAndOwners[2][31] ="300";
+        fieldsNamesAndOwners[2][32] ="300";
+        fieldsNamesAndOwners[2][33] ="Community Chest";
+        fieldsNamesAndOwners[2][34] ="320";
+        fieldsNamesAndOwners[2][35] ="200";
+        fieldsNamesAndOwners[2][36] ="Chance";
+        fieldsNamesAndOwners[2][37] ="350";
+        fieldsNamesAndOwners[2][38] ="Luxury Tax";
+        fieldsNamesAndOwners[2][39] ="400";
+
+
+        fieldsNamesAndOwners[3][0] ="GO";
+        fieldsNamesAndOwners[3][1] ="2";
+        fieldsNamesAndOwners[3][2] ="Community Chest";
+        fieldsNamesAndOwners[3][3] ="4";
+        fieldsNamesAndOwners[3][4] ="Income Tax";
+        fieldsNamesAndOwners[3][5] ="25";
+        fieldsNamesAndOwners[3][6] ="6";
+        fieldsNamesAndOwners[3][7] ="Chance";
+        fieldsNamesAndOwners[3][8] ="6";
+        fieldsNamesAndOwners[3][9] ="8";
+        fieldsNamesAndOwners[3][10] ="Jail";
+        fieldsNamesAndOwners[3][11] ="10";
+        fieldsNamesAndOwners[3][12] ="0";
+        fieldsNamesAndOwners[3][13] ="10";
+        fieldsNamesAndOwners[3][14] ="12";
+        fieldsNamesAndOwners[3][15] ="25";
+        fieldsNamesAndOwners[3][16] ="14";
+        fieldsNamesAndOwners[3][17] ="Community Chest";
+        fieldsNamesAndOwners[3][18] ="14";
+        fieldsNamesAndOwners[3][19] ="16";
+        fieldsNamesAndOwners[3][20] ="";
+        fieldsNamesAndOwners[3][21] ="18";
+        fieldsNamesAndOwners[3][22] ="Chance";
+        fieldsNamesAndOwners[3][23] ="18";
+        fieldsNamesAndOwners[3][24] ="20";
+        fieldsNamesAndOwners[3][25] ="25";
+        fieldsNamesAndOwners[3][26] ="22";
+        fieldsNamesAndOwners[3][27] ="22";
+        fieldsNamesAndOwners[3][28] ="0";
+        fieldsNamesAndOwners[3][29] ="24";
+        fieldsNamesAndOwners[3][30] ="Go To Jail";
+        fieldsNamesAndOwners[3][31] ="26";
+        fieldsNamesAndOwners[3][32] ="26";
+        fieldsNamesAndOwners[3][33] ="Community Chest";
+        fieldsNamesAndOwners[3][34] ="28";
+        fieldsNamesAndOwners[3][35] ="25";
+        fieldsNamesAndOwners[3][36] ="Chance";
+        fieldsNamesAndOwners[3][37] ="35";
+        fieldsNamesAndOwners[3][38] ="Luxury Tax";
+        fieldsNamesAndOwners[3][39] ="50";
+
+
+
+        //Arrays.fill(fieldsNamesAndOwners[2], "");
+        //System.out.println(Arrays.deepToString(fieldsNamesAndOwners).replace("[","\n").replace("]","\n"));
+        return fieldsNamesAndOwners;
     }
 
-    public static void setFieldOwner(String name) {
+    public static void setFieldOwner(String [][]fields,int iteration,String name) {
+        fields[1][iteration]=name;
+    }
+    public static String getFieldOwner(String [][]fields, int [] playersPosition,int iteration,int diceSum) {
+        String fieldOwner=fields[1][playersPosition[iteration]+diceSum];
+        return fieldOwner;
+    }
 
+    public static int getFieldPrice(String [][]fields,int iteration){
+        int fieldPrice=Integer.valueOf(fields[2][iteration]);
+        return fieldPrice;
+    }
+    public static int getFieldRent(String [][]fields,int [] playersPosition,int iteration,int diceSum){
+        int fieldRent=Integer.valueOf(fields[3][(playersPosition[iteration]+diceSum)]);
+        return fieldRent;
     }
 }
