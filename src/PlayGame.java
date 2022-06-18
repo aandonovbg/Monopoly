@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class PlayGame {
@@ -7,31 +8,40 @@ public class PlayGame {
             int dice1 = Dice.throwDice();
             int dice2 = Dice.throwDice();
             System.out.println(playersName[i] + " threw Dice " + dice1 + " and " + dice2);
+            System.out.println(playersName[i] + "'s position is " + (playersPosition[i] + dice1 + dice2));
+
             if (dice1 == dice2) {
                 System.out.println(playersName[i] + " threw PAIR!!!");
             }
+
             MethodsPlayer.setPlayerPosition(playersPosition, i, dice1 + dice2);//player's NEW position is applied to arr index
-            //System.out.println(playersName[i]+" new position is "+playersPosition[i]);
             isFieldFree(fields, playersName, playersMoney, playersPosition, i, dice1 + dice2);
-            Dice.checkForPair(playersName,i,dice1,dice2);
+
+            Dice.checkForPair(playersName, i, dice1, dice2);
+
+            if (playersMoney[i] == 0) {
+                System.out.println(playersName[i] + " you have NO more money.\nYou are broke!");
+                System.out.println("END OF GAME FOR YOU!!!");
+            }
         }
+        startGame(fields, playersName, playersMoney, playersPosition, playersInJail, PlayersJailTimeCounter);
     }
 
     public static void isFieldFree(String[][] fields, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration, int diceSum) {
         Scanner sc = new Scanner(System.in);
         //if the field is free/empty
-        if (fields[1][playersPosition[iteration]].equalsIgnoreCase("")) {
-            System.out.println("Property " + fields[0][playersPosition[iteration]] + " is free");
+        if (fields[1][playersPosition[iteration]].equals("")) {
+            System.out.println("Property \"" + fields[0][playersPosition[iteration]] + "\" is free.");
             System.out.println("Would you like to buy it?");
             System.out.print("Yes/No-> ");
             String q = sc.next().toLowerCase();
             switch (q) {
                 case "yes":
-                    if (MethodsPlayer.getPlayerMoney(playersMoney, iteration) > MethodsField.getFieldPrice(fields, iteration)) {
-                        MethodsPlayer.setPlayerMoney(playersMoney, iteration, playersMoney[iteration] - MethodsField.getFieldPrice(fields, iteration));
+                    if (playersMoney[iteration] > Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)])) {
+                        MethodsPlayer.setPlayerMoney(playersMoney, iteration, playersMoney[iteration] - Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)]));
                         MethodsField.setFieldOwner(fields, iteration, playersName[iteration]);
-                        System.out.println(playersName[iteration] + " successfully bought " + fields[0][playersPosition[iteration]] + "!");
-                    } else if (MethodsPlayer.getPlayerMoney(playersMoney, iteration) < MethodsField.getFieldPrice(fields, playersPosition[iteration])) {
+                        System.out.println(playersName[iteration] + " successfully bought property \"" + fields[0][playersPosition[iteration]] + "\"!");
+                    } else if (MethodsPlayer.getPlayerMoney(playersMoney, iteration) < Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)])) {
                         System.out.println(playersName[iteration] + " you don't have enough money!");
                     }
                     break;
@@ -61,4 +71,6 @@ public class PlayGame {
     public static void payMoney(String[][] fields, int[] playersMoney, int[] playersPosition, int iteration) {
         playersMoney[iteration] -= Integer.parseInt(fields[3][playersPosition[iteration]]);
     }
+
+
 }
