@@ -138,7 +138,7 @@ public class MethodsField {
         return fieldsNamesAndOwners;
     }
 
-    public static String[][] communityChest(){
+    public static String[][] communityChest() {
         //[0][0]=cardsText
         //[1][0]=cardsCashAmount
         String[][] communityChest = new String[2][13];
@@ -176,20 +176,39 @@ public class MethodsField {
         return communityChest;
     }
 
-    public static void isFieldSpecial(String[][] fields, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration, int diceSum) {
-        if (fields[1][playersPosition[iteration]].equals("Community Chest") ||
-                fields[1][playersPosition[iteration]].equals("Income Tax") ||
-                fields[1][playersPosition[iteration]].equals("Go To Jail") ||
-                fields[1][playersPosition[iteration]].equals("Luxury Tax") ||
-                fields[1][playersPosition[iteration]].equals("Free Parking")) {
-            switch (fields[1][playersPosition[iteration]]) {
+    public static void isFieldSpecial(String[][] fields, String[][] communityChest, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration, int diceSum) {
+        if (fields[0][playersPosition[iteration]].equals("Community Chest") ||
+                fields[0][playersPosition[iteration]].equals("Income Tax") ||
+                fields[0][playersPosition[iteration]].equals("Go To Jail") ||
+                fields[0][playersPosition[iteration]].equals("Luxury Tax") ||
+                fields[0][playersPosition[iteration]].equals("Free Parking")) {
+            switch (fields[0][playersPosition[iteration]]) {
                 case "Community Chest":
                     Random rand = new Random();
-                    int index = rand.nextInt(15);
-
-
-
-
+                    int index = rand.nextInt(14);
+                    for (int i = 0; i < communityChest[0].length; i++) {
+                        if (i == index) {
+                            System.out.println(playersName[iteration] + " the card that you drew from Community Chest is:");
+                            System.out.println(communityChest[0][index]);
+                            if (index == 7) {                      //if it is card [0][7]
+                                for (int j = 0; j < playersMoney.length; j++) {
+                                    playersMoney[j] -= 10;        //we deduct 10$ from every Player's money
+                                }
+                                playersMoney[iteration] += playersMoney.length * 10; //add the amount to the current Player's turn
+                            } else {
+                                playersMoney[iteration] += Integer.parseInt(communityChest[1][index]);
+                            }
+                        }
+                    }
+                    break;
+                case "Income Tax":
+                    System.out.println("You ended up on \"Income Tax\" field and must pay 200$ to the Bank.");
+                    playersMoney[iteration] -= 200;
+                    break;
+                case "Go To Jail":
+                    System.out.println("You ended up on \"Go To Jail\" field and your position is moved to field \"Jail\" ");
+                    playersPosition[iteration]=10;
+                    //what we do if a Player is in Jail!!!!!!!!!!!!!!
             }
         }
 

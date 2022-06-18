@@ -12,6 +12,7 @@ public class Main {
         System.out.print("How many Players are going to play->");
         int n = MethodsPlayer.checkPlayerCount();
 
+        String[][] communityChest=MethodsField.communityChest();
         String[][] fields=MethodsField.initializeFieldsNamesAndOwners();
         String[] players = MethodsPlayer.initializePlayersNames(n);
         int []money=MethodsPlayer.initializePlayersMoney(n);
