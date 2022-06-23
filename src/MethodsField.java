@@ -138,13 +138,34 @@ public class MethodsField {
         return fieldsNamesAndOwners;
     }
 
+    public static String [][] chanceCards(){
+        String [][] chanceCards=new String[2][13];
+        chanceCards[0][0]="Advance to \"Boardwalk\".";
+        chanceCards[0][1]="Advance to \"GO\". Collect $200.";
+        chanceCards[0][2]="Advance to \"Illinois Avenue\". If you pass \"GO\", collect $200.";
+        chanceCards[0][3]="Advance to \"St. Charles Place\". If you pass \"GO\", collect $200.";
+        chanceCards[0][4]="Advance to the nearest \"Railroad\". If unowned, you may buy it from the Bank." +
+                " If owned, pay owner twice the rental to which they are otherwise entitled.";
+        chanceCards[0][5]="Advance to nearest \"Utility\". If unowned, you may buy it from the Bank." +
+                " If owned, throw dice and pay owner a total ten times amount thrown.";
+        chanceCards[0][6]="Bank pays you dividend of $50.";
+        chanceCards[0][7]="Go back 3 spaces.";
+        chanceCards[0][8]="Go to Jail. Go directly to Jail, do not pass \"GO\", do NOT collect $200.";
+        chanceCards[0][9]="Speeding fine $15";
+        chanceCards[0][10]="Take a trip to \"Reading Railroad\". If you pass \"GO\", collect $200.";
+        chanceCards[0][1]="You have been elected Chairman of the Board. Pay each player $50";
+        chanceCards[0][12]="Your building loan matures. Collect $150";
+
+        chanceCards[1][0]="";
+        return chanceCards;
+    }
     public static String[][] communityChest() {
         //[0][0]=cardsText
         //[1][0]=cardsCashAmount
-        String[][] communityChest = new String[2][13];
+        String[][] communityChest = new String[2][14];
         communityChest[0][0] = "Advance to \"GO\". Collect $200";
         communityChest[0][1] = "Bank error in your favor. Collect $200";
-        communityChest[0][2] = "Doctor?s fee. Pay $50";
+        communityChest[0][2] = "Doctor’s fee. Pay $50";
         communityChest[0][3] = "From sale of stock you get $50.";
         communityChest[0][4] = "Go to Jail. Go directly to jail, do not pass Go, do not collect $200";
         communityChest[0][5] = "Holiday fund matures. Receive $100.";
@@ -177,38 +198,38 @@ public class MethodsField {
     }
 
     public static void isFieldSpecial(String[][] fields, String[][] communityChest, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration, int diceSum) {
-        if (fields[0][playersPosition[iteration]].equals("Community Chest") ||
-                fields[0][playersPosition[iteration]].equals("Income Tax") ||
-                fields[0][playersPosition[iteration]].equals("Go To Jail") ||
-                fields[0][playersPosition[iteration]].equals("Luxury Tax") ||
-                fields[0][playersPosition[iteration]].equals("Free Parking")) {
-            switch (fields[0][playersPosition[iteration]]) {
+        if (fields[1][playersPosition[iteration]].equals("Community Chest") ||
+                fields[1][playersPosition[iteration]].equals("Income Tax") ||
+                fields[1][playersPosition[iteration]].equals("Go To Jail") ||
+                fields[1][playersPosition[iteration]].equals("Luxury Tax") ||
+                fields[1][playersPosition[iteration]].equals("Free Parking")) {
+            switch (fields[1][playersPosition[iteration]]) {
                 case "Community Chest":
                     Random rand = new Random();
                     int index = rand.nextInt(14);
-                    for (int i = 0; i < communityChest[0].length; i++) {
-                        if (i == index) {
-                            System.out.println(playersName[iteration] + " the card that you drew from Community Chest is:");
-                            System.out.println(communityChest[0][index]);
-                            if (index == 7) {                      //if it is card [0][7]
-                                for (int j = 0; j < playersMoney.length; j++) {
-                                    playersMoney[j] -= 10;        //we deduct 10$ from every Player's money
-                                }
-                                playersMoney[iteration] += playersMoney.length * 10; //add the amount to the current Player's turn
-                            } else {
-                                playersMoney[iteration] += Integer.parseInt(communityChest[1][index]);
-                            }
+                    if (index == 8) {     //check if index is equal to [0][7]
+                        System.out.println(communityChest[0][index - 1]);
+                        for (int i = 0; i < playersMoney.length; i++) {
+                            playersMoney[i] -= 10;      //deduct 10$ of every player
                         }
+                        playersMoney[iteration] += playersMoney.length * 10; //add 10$ from every player to current player
+                    } else {
+                        System.out.println(communityChest[0][index - 1]);
+                        playersMoney[iteration] += Integer.parseInt(communityChest[1][index - 1]);
                     }
                     break;
-                case "Income Tax":
-                    System.out.println("You ended up on \"Income Tax\" field and must pay 200$ to the Bank.");
-                    playersMoney[iteration] -= 200;
+                case"Income Tax":
+                    System.out.println("Pay 200$ Income TAX :)");
+                    playersMoney[iteration]-=200;
                     break;
                 case "Go To Jail":
-                    System.out.println("You ended up on \"Go To Jail\" field and your position is moved to field \"Jail\" ");
+                    System.out.println("Go straight to Jail");
                     playersPosition[iteration]=10;
-                    //what we do if a Player is in Jail!!!!!!!!!!!!!!
+                    break;
+                case "Luxury Tax":
+                    System.out.println("Pay 100$ Luxury TAX :)");
+                    playersMoney[iteration]-=100;
+                    break;
             }
         }
 

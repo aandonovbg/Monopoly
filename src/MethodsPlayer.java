@@ -4,12 +4,12 @@ import java.util.Scanner;
 public class MethodsPlayer {
     public static int checkPlayerCount() {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextByte();
-        if (n < 1 || n > 4) {
+        int playerCount = sc.nextByte();
+        if (playerCount < 1 || playerCount > 4) {
             System.out.println("Players range can be from 1 to 4");
             return Main.startMenu();
         }
-        return n;
+        return playerCount;
     }
 
     public static String[] initializePlayersNames(int n) {
