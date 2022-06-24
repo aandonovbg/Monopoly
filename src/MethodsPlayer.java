@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class MethodsPlayer {
@@ -17,7 +16,7 @@ public class MethodsPlayer {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < n; i++) {
             System.out.print("Player " + (i + 1) + " name->");
-            players[i]= sc.nextLine();
+            players[i] = sc.nextLine();
         }
         return players;
     }
@@ -63,20 +62,24 @@ public class MethodsPlayer {
         playersNames[iteration] = name;
     }
 
-    public static int getPlayerMoney(int[] playersMoney,int iteration ) {
+    public static int getPlayerMoney(int[] playersMoney, int iteration) {
         return playersMoney[iteration];
     }
 
-    public static void setPlayerMoney(int[] playersMoney,int n, int money) {
+    public static void setPlayerMoney(int[] playersMoney, int n, int money) {
         playersMoney[n] = money;
     }
 
-    public static int getPlayerPosition(int[] playersPosition,int iteration) {
+    public static int getPlayerPosition(int[] playersPosition, int iteration) {
         return playersPosition[iteration];
     }
 
-    public static void setPlayerPosition(int[] playersPosition,int iteration, int diceSum) {
+    public static void setPlayerPosition(int[] playersPosition, int[] playersMoney, int iteration, int diceSum) {
         playersPosition[iteration] += diceSum;
+        if (playersPosition[iteration] > 39) {
+            playersMoney[iteration] += 200;
+            playersPosition[iteration] = playersPosition[iteration] - 39;
+        }
     }
 
     public static boolean getPlayerInJail(int n, boolean[] playersInJail) {

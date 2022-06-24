@@ -50,9 +50,48 @@ public class MethodsField {
         fieldsNamesAndOwners[0][38] = "Luxury Tax";
         fieldsNamesAndOwners[0][39] = "Boardwalk";
 
-        Arrays.fill(fieldsNamesAndOwners[1], "");
+        fieldsNamesAndOwners[1][0] = "GO";
+        fieldsNamesAndOwners[1][1] = "";
+        fieldsNamesAndOwners[1][2] = "Community Chest";
+        fieldsNamesAndOwners[1][3] = "";
+        fieldsNamesAndOwners[1][4] = "Income Tax";
+        fieldsNamesAndOwners[1][5] = "";
+        fieldsNamesAndOwners[1][6] = "";
+        fieldsNamesAndOwners[1][7] = "Chance";
+        fieldsNamesAndOwners[1][8] = "";
+        fieldsNamesAndOwners[1][9] = "";
+        fieldsNamesAndOwners[1][10] = "Jail";
+        fieldsNamesAndOwners[1][11] = "";
+        fieldsNamesAndOwners[1][12] = "";
+        fieldsNamesAndOwners[1][13] = "";
+        fieldsNamesAndOwners[1][14] = "";
+        fieldsNamesAndOwners[1][15] = "";
+        fieldsNamesAndOwners[1][16] = "";
+        fieldsNamesAndOwners[1][17] = "Community Chest";
+        fieldsNamesAndOwners[1][18] = "";
+        fieldsNamesAndOwners[1][19] = "";
+        fieldsNamesAndOwners[1][20] = "Parking";
+        fieldsNamesAndOwners[1][21] = "";
+        fieldsNamesAndOwners[1][22] = "Chance";
+        fieldsNamesAndOwners[1][23] = "";
+        fieldsNamesAndOwners[1][24] = "";
+        fieldsNamesAndOwners[1][25] = "";
+        fieldsNamesAndOwners[1][26] = "";
+        fieldsNamesAndOwners[1][27] = "";
+        fieldsNamesAndOwners[1][28] = "";
+        fieldsNamesAndOwners[1][29] = "";
+        fieldsNamesAndOwners[1][30] = "Go To Jail";
+        fieldsNamesAndOwners[1][31] = "";
+        fieldsNamesAndOwners[1][32] = "";
+        fieldsNamesAndOwners[1][33] = "Community Chest";
+        fieldsNamesAndOwners[1][34] = "";
+        fieldsNamesAndOwners[1][35] = "";
+        fieldsNamesAndOwners[1][36] = "Chance";
+        fieldsNamesAndOwners[1][37] = "";
+        fieldsNamesAndOwners[1][38] = "Luxury Tax";
+        fieldsNamesAndOwners[1][39] = "";
 
-        fieldsNamesAndOwners[2][0] = "GO";
+        fieldsNamesAndOwners[2][0] = "";
         fieldsNamesAndOwners[2][1] = "60";
         fieldsNamesAndOwners[2][2] = "Community Chest";
         fieldsNamesAndOwners[2][3] = "60";
@@ -138,27 +177,29 @@ public class MethodsField {
         return fieldsNamesAndOwners;
     }
 
-    public static String [][] chanceCards(){
-        String [][] chanceCards=new String[2][13];
-        chanceCards[0][0]="Advance to \"Boardwalk\".";
-        chanceCards[0][1]="Advance to \"GO\". Collect $200.";
-        chanceCards[0][2]="Advance to \"Illinois Avenue\". If you pass \"GO\", collect $200.";
-        chanceCards[0][3]="Advance to \"St. Charles Place\". If you pass \"GO\", collect $200.";
-        chanceCards[0][4]="Advance to the nearest \"Railroad\". If unowned, you may buy it from the Bank." +
+    public static String[] chanceCards() {
+        //[0][0]=cardsText
+        //[1][0]=cardsCashAmount
+        String[] chanceCards = new String[13];
+        chanceCards[0] = "Advance to \"Boardwalk\".";
+        chanceCards[1] = "Advance to \"GO\". Collect $200.";
+        chanceCards[2] = "Advance to \"Illinois Avenue\". If you pass \"GO\", collect $200.";
+        chanceCards[3] = "Advance to \"St. Charles Place\". If you pass \"GO\", collect $200.";
+        chanceCards[4] = "Advance to the nearest \"Railroad\". If unowned, you may buy it from the Bank." +
                 " If owned, pay owner twice the rental to which they are otherwise entitled.";
-        chanceCards[0][5]="Advance to nearest \"Utility\". If unowned, you may buy it from the Bank." +
+        chanceCards[5] = "Advance to nearest \"Utility\". If unowned, you may buy it from the Bank." +
                 " If owned, throw dice and pay owner a total ten times amount thrown.";
-        chanceCards[0][6]="Bank pays you dividend of $50.";
-        chanceCards[0][7]="Go back 3 spaces.";
-        chanceCards[0][8]="Go to Jail. Go directly to Jail, do not pass \"GO\", do NOT collect $200.";
-        chanceCards[0][9]="Speeding fine $15";
-        chanceCards[0][10]="Take a trip to \"Reading Railroad\". If you pass \"GO\", collect $200.";
-        chanceCards[0][1]="You have been elected Chairman of the Board. Pay each player $50";
-        chanceCards[0][12]="Your building loan matures. Collect $150";
+        chanceCards[6] = "Bank pays you dividend of $50.";
+        chanceCards[7] = "Go back 3 spaces.";
+        chanceCards[8] = "Go to Jail. Go directly to Jail, do not pass \"GO\", do NOT collect $200.";
+        chanceCards[9] = "Speeding fine $15";
+        chanceCards[10] = "Take a trip to \"Reading Railroad\". If you pass \"GO\", collect $200.";
+        chanceCards[11] = "You have been elected Chairman of the Board. Pay each player $50";
+        chanceCards[12] = "Your building loan matures. Collect $150";
 
-        chanceCards[1][0]="";
         return chanceCards;
     }
+
     public static String[][] communityChest() {
         //[0][0]=cardsText
         //[1][0]=cardsCashAmount
@@ -204,7 +245,7 @@ public class MethodsField {
                 fields[1][playersPosition[iteration]].equals("Luxury Tax") ||
                 fields[1][playersPosition[iteration]].equals("Free Parking")) {
             switch (fields[1][playersPosition[iteration]]) {
-                case "Community Chest":
+                case "Community Chest" -> {
                     Random rand = new Random();
                     int index = rand.nextInt(14);
                     if (index == 8) {     //check if index is equal to [0][7]
@@ -217,19 +258,19 @@ public class MethodsField {
                         System.out.println(communityChest[0][index - 1]);
                         playersMoney[iteration] += Integer.parseInt(communityChest[1][index - 1]);
                     }
-                    break;
-                case"Income Tax":
+                }
+                case "Income Tax" -> {
                     System.out.println("Pay 200$ Income TAX :)");
-                    playersMoney[iteration]-=200;
-                    break;
-                case "Go To Jail":
+                    playersMoney[iteration] -= 200;
+                }
+                case "Go To Jail" -> {
                     System.out.println("Go straight to Jail");
-                    playersPosition[iteration]=10;
-                    break;
-                case "Luxury Tax":
+                    playersPosition[iteration] = 10;
+                }
+                case "Luxury Tax" -> {
                     System.out.println("Pay 100$ Luxury TAX :)");
-                    playersMoney[iteration]-=100;
-                    break;
+                    playersMoney[iteration] -= 100;
+                }
             }
         }
 
@@ -239,10 +280,10 @@ public class MethodsField {
         fields[1][iteration] = name;
     }
 
-    public static String getFieldOwner(String[][] fields, int[] playersPosition, int iteration, int diceSum) {
+   /*public static String getFieldOwner(String[][] fields, int[] playersPosition, int iteration, int diceSum) {
         String fieldOwner = fields[1][playersPosition[iteration] + diceSum];
         return fieldOwner;
-    }
+   }*/
 
     public static int getFieldPrice(String[][] fields, int iteration) {
         return Integer.parseInt(fields[2][iteration]);
