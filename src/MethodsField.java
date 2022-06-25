@@ -70,7 +70,7 @@ public class MethodsField {
         fieldsNamesAndOwners[1][17] = "Community Chest";
         fieldsNamesAndOwners[1][18] = "";
         fieldsNamesAndOwners[1][19] = "";
-        fieldsNamesAndOwners[1][20] = "Parking";
+        fieldsNamesAndOwners[1][20] = "Free Parking";
         fieldsNamesAndOwners[1][21] = "";
         fieldsNamesAndOwners[1][22] = "Chance";
         fieldsNamesAndOwners[1][23] = "";
@@ -179,7 +179,6 @@ public class MethodsField {
 
     public static String[] chanceCards() {
         //[0][0]=cardsText
-        //[1][0]=cardsCashAmount
         String[] chanceCards = new String[13];
         chanceCards[0] = "Advance to \"Boardwalk\".";
         chanceCards[1] = "Advance to \"GO\". Collect $200.";

@@ -75,10 +75,11 @@ public class MethodsPlayer {
     }
 
     public static void setPlayerPosition(int[] playersPosition, int[] playersMoney, int iteration, int diceSum) {
-        playersPosition[iteration] += diceSum;
-        if (playersPosition[iteration] > 39) {
+        if (playersPosition[iteration]+diceSum > 39) {
             playersMoney[iteration] += 200;
-            playersPosition[iteration] = playersPosition[iteration] - 39;
+            playersPosition[iteration] = (playersPosition[iteration]+diceSum) - 39;
+        }else {
+            playersPosition[iteration] += diceSum;
         }
     }
 

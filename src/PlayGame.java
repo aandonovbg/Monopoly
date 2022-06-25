@@ -5,30 +5,57 @@ public class PlayGame {
 
     public static void startGame(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter) {
         for (int i = 0; i < playersName.length; i++) {
-            int dice1 = Dice.throwDice();
-            int dice2 = Dice.throwDice();
-            System.out.println(playersName[i] + " threw Dice " + dice1 + " and " + dice2);
-            System.out.println();
-            //System.out.println(playersName[i] + "'s position is " + (playersPosition[i] + dice1 + dice2)+" -\""+fields[0][(playersPosition[i] + dice1 + dice2)]+"\"");
+            if (playersJailTimeCounter[i] > 0) { //check for JailTime
+                int dice1 = Dice.throwDice();
+                int dice2 = Dice.throwDice();
+                System.out.println(playersName[i] + " threw Dice " + dice1 + " and " + dice2);
+                if (dice1 == dice2) {
+                    playersJailTimeCounter[i]=0;
+                    System.out.println(playersName[i] + " threw PAIR!!!");
+                    System.out.println(playersName[i] + " is out of JAIL!!!");
 
-            if (dice1 == dice2) {
-                System.out.println(playersName[i] + " threw PAIR!!!");
-            }
+                    MethodsPlayer.setPlayerPosition(playersPosition, playersMoney, i, dice1 + dice2);
+                    System.out.println(playersName[i] + "'s position is " + playersPosition[i] + " -\"" + fields[0][playersPosition[i]] + "\"");
+                    isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
 
-            MethodsPlayer.setPlayerPosition(playersPosition, playersMoney, i, dice1 + dice2);//player's NEW position is applied to arr index
-            System.out.println(playersName[i] + "'s position is " + playersPosition[i] + " -\"" + fields[0][playersPosition[i]] + "\"");
-            isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
+                    if (playersMoney[i] == 0) {
+                        deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
+                    }
+                }
+                playersJailTimeCounter[i]--;
+                if (playersJailTimeCounter[i] > 1) {
+                    System.out.println(playersName[i] + " has " + playersJailTimeCounter[i] + " turns left in Jail ");
+                } else {
+                    System.out.println(playersName[i] + " has " + playersJailTimeCounter[i] + " turn left in Jail ");
+                }
 
-            Dice.checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i, dice1, dice2);
+                continue;
+            } else {
+                int dice1 = Dice.throwDice();
+                int dice2 = Dice.throwDice();
+                System.out.println(playersName[i] + " threw Dice " + dice1 + " and " + dice2);
+                System.out.println();
+                //System.out.println(playersName[i] + "'s position is " + (playersPosition[i] + dice1 + dice2)+" -\""+fields[0][(playersPosition[i] + dice1 + dice2)]+"\"");
 
-            if (playersMoney[i] == 0) {
-                deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
+                if (dice1 == dice2) {
+                    System.out.println(playersName[i] + " threw PAIR!!!");
+                }
+
+                MethodsPlayer.setPlayerPosition(playersPosition, playersMoney, i, dice1 + dice2);//player's NEW position is applied to arr index
+                System.out.println(playersName[i] + "'s position is " + playersPosition[i] + " -\"" + fields[0][playersPosition[i]] + "\"");
+                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
+
+                Dice.checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i, dice1, dice2);
+
+                if (playersMoney[i] == 0) {
+                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
+                }
             }
         }
         if (playersName.length > 1) {
             startGame(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter);
         } else {
-            System.out.println("And WINNER is " + playersName[0].toUpperCase());
+            System.out.println("And the WINNER is " + playersName[0].toUpperCase());
         }
     }
 
@@ -68,6 +95,7 @@ public class PlayGame {
                 fields[1][playersPosition[iteration]].equals("Go To Jail") ||
                 fields[1][playersPosition[iteration]].equals("Luxury Tax") ||
                 fields[1][playersPosition[iteration]].equals("Chance") ||
+                fields[1][playersPosition[iteration]].equals("Jail") ||
                 fields[1][playersPosition[iteration]].equals("Free Parking")) {
             switch (fields[1][playersPosition[iteration]]) {
                 case "Chance" -> {
@@ -81,6 +109,7 @@ public class PlayGame {
                         }
                         case 1 -> {
                             playersPosition[iteration] = 0;
+                            System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
                             playersMoney[iteration] += 200;
                             System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                         }
@@ -88,15 +117,19 @@ public class PlayGame {
                             if (playersPosition[iteration] == 36) {
                                 playersPosition[iteration] = 24;
                                 playersMoney[iteration] += 200;
+                                System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
                                 System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                             } else {
                                 playersPosition[iteration] = 24;
+                                System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
+                                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                             }
                         }
                         case 3 -> {
                             if (playersPosition[iteration] == 7) {
                                 playersPosition[iteration] = 11;
-
+                                System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
+                                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                             } else {
                                 playersPosition[iteration] = 11;
                                 playersMoney[iteration] += 200;
@@ -135,12 +168,14 @@ public class PlayGame {
                         }
                         case 7 -> {
                             playersPosition[iteration] -= 3;
+                            System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
+                            isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                         }
                         case 8 -> {
                             playersPosition[iteration] = 10;
-                            playersInJail[iteration] = true;
-                            playersJailTimeCounter[iteration] = 0;
+                            System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
+                            playersJailTimeCounter[iteration] = 3;
                         }
                         case 9 -> {
                             playersMoney[iteration] -= 15;
@@ -176,16 +211,24 @@ public class PlayGame {
                 case "Community Chest" -> {
                     Random rand = new Random();
                     int index = rand.nextInt(13);
-                    if (index == 7) {     //check if index is equal to [0][7]
-                        System.out.println(communityChest[0][index]);
-                        for (int i = 0; i < playersMoney.length; i++) {
-                            playersMoney[i] -= 10;      //deduct 10$ of every player
+                    System.out.println(communityChest[0][index]);
+                    switch (index) {
+                        case 4 -> {
+                            playersPosition[iteration] = 10;
+                            // playersInJail[iteration] = true;
+                            playersJailTimeCounter[iteration] = 3;
                         }
-                        playersMoney[iteration] += playersMoney.length * 10; //add 10$ from every player to current player
-                    } else {
-                        System.out.println(communityChest[0][index]);
-                        playersMoney[iteration] += Integer.parseInt(communityChest[1][index]);
-                        System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                        case 7 -> {
+                            for (int i = 0; i < playersMoney.length; i++) {
+                                playersMoney[i] -= 10;      //deduct 10$ of every player
+                            }
+                            playersMoney[iteration] += playersMoney.length * 10; //add 10$ from every player to current player
+                            System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                        }
+                        default -> {
+                            playersMoney[iteration] += Integer.parseInt(communityChest[1][index]);
+                            System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                        }
                     }
                 }
                 case "Income Tax" -> {
@@ -196,13 +239,19 @@ public class PlayGame {
                 case "Go To Jail" -> {
                     System.out.println("Go straight to Jail");
                     playersPosition[iteration] = 10;
-                    playersInJail[iteration] = true;
-                    playersJailTimeCounter[iteration] = 0;
+                    //playersInJail[iteration] = true;
+                    playersJailTimeCounter[iteration] = 3;
                 }
                 case "Luxury Tax" -> {
                     System.out.println("Pay 100$ Luxury TAX :)");
                     playersMoney[iteration] -= 100;
                     System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                }
+                case "Jail" -> {
+                    playersJailTimeCounter[iteration] = 3;
+                }
+                case "Free Parking" -> {
+
                 }
             }
         }
@@ -239,8 +288,12 @@ public class PlayGame {
         } else if (!fields[1][playersPosition[iteration]].equals("")) {
             if (fields[1][playersPosition[iteration]].equals("Chance") || fields[1][playersPosition[iteration]].equals("Community Chest") ||
                     fields[1][playersPosition[iteration]].equals("Income Tax") || fields[1][playersPosition[iteration]].equals("Jail") ||
-                    fields[1][playersPosition[iteration]].equals("Go To Jail") || fields[1][playersPosition[iteration]].equals("Luxury Tax")) {
+                    fields[1][playersPosition[iteration]].equals("Go To Jail") || fields[1][playersPosition[iteration]].equals("Luxury Tax") || fields[1][playersPosition[iteration]].equals("Free Parking")) {
                 isFieldSpecial(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+            }
+            else if (fields[1][playersPosition[iteration]].equals(playersName[iteration])){ //check if Player is the owner of the field
+                System.out.println(playersName[iteration]+" is the owner of "+fields[0][playersPosition[iteration]]);
+
             }
             //Player pays rent to the Owner of the field
             //if Player has enough money
