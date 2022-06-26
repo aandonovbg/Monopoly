@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,6 +6,7 @@ public class PlayGame {
 
     public static void startGame(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter) {
         for (int i = 0; i < playersName.length; i++) {
+            MethodsField.checkIfNeighborHoodIsEnabled(MethodsField.createdNeighborhoods(fields,playersName,playersMoney,playersPosition,i),fields,playersName,playersMoney,playersPosition,i);
             if (playersJailTimeCounter[i] > 0) { //check for JailTime
                 MethodsPlayer.promptEnterKey();
                 int dice1 = Dice.throwDice();
@@ -293,7 +295,9 @@ public class PlayGame {
                     fields[1][playersPosition[iteration]].equals("Income Tax") || fields[1][playersPosition[iteration]].equals("Jail") ||
                     fields[1][playersPosition[iteration]].equals("Go To Jail") || fields[1][playersPosition[iteration]].equals("Luxury Tax") || fields[1][playersPosition[iteration]].equals("Free Parking")) {
                 isFieldSpecial(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
-            } else if (fields[1][playersPosition[iteration]].equals(playersName[iteration])) { //check if Player is the owner of the field
+            }
+            //check if Player is the owner of the field
+            else if (fields[1][playersPosition[iteration]].equals(playersName[iteration])) {
                 System.out.println(playersName[iteration] + " is the owner of " + fields[0][playersPosition[iteration]]);
 
             }
@@ -314,6 +318,11 @@ public class PlayGame {
             //if Player does NOT have enough money
             else if (playersMoney[iteration] < Integer.parseInt(fields[3][playersPosition[iteration]])) {
                 deletePlayer(playersName, playersMoney, playersPosition, playersInJail, iteration);
+                for (int i = 0; i < fields.length; i++) {
+                    if (fields[1][i].equals(playersName[iteration])){
+                        fields[1][i]="";
+                    }
+                }
             }
         }
     }
