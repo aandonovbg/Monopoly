@@ -6,11 +6,12 @@ public class PlayGame {
     public static void startGame(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter) {
         for (int i = 0; i < playersName.length; i++) {
             if (playersJailTimeCounter[i] > 0) { //check for JailTime
+                MethodsPlayer.promptEnterKey();
                 int dice1 = Dice.throwDice();
                 int dice2 = Dice.throwDice();
                 System.out.println(playersName[i] + " threw Dice " + dice1 + " and " + dice2);
                 if (dice1 == dice2) {
-                    playersJailTimeCounter[i]=0;
+                    playersJailTimeCounter[i] = 0;
                     System.out.println(playersName[i] + " threw PAIR!!!");
                     System.out.println(playersName[i] + " is out of JAIL!!!");
 
@@ -21,16 +22,19 @@ public class PlayGame {
                     if (playersMoney[i] == 0) {
                         deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
                     }
+                } else {
+                    playersJailTimeCounter[i]--;
                 }
-                playersJailTimeCounter[i]--;
+
                 if (playersJailTimeCounter[i] > 1) {
                     System.out.println(playersName[i] + " has " + playersJailTimeCounter[i] + " turns left in Jail ");
                 } else {
                     System.out.println(playersName[i] + " has " + playersJailTimeCounter[i] + " turn left in Jail ");
                 }
 
-                continue;
             } else {
+                System.out.println();
+                MethodsPlayer.promptEnterKey();
                 int dice1 = Dice.throwDice();
                 int dice2 = Dice.throwDice();
                 System.out.println(playersName[i] + " threw Dice " + dice1 + " and " + dice2);
@@ -47,7 +51,7 @@ public class PlayGame {
 
                 Dice.checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i, dice1, dice2);
 
-                if (playersMoney[i] == 0) {
+                if (playersMoney[i] < 1) {
                     deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
                 }
             }
@@ -117,29 +121,30 @@ public class PlayGame {
                             if (playersPosition[iteration] == 36) {
                                 playersPosition[iteration] = 24;
                                 playersMoney[iteration] += 200;
-                                System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
-                                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                                System.out.println(playersName[iteration] + " passed through \"GO\" and collects $200.\"");
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             } else {
                                 playersPosition[iteration] = 24;
-                                System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
-                                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             }
                         }
                         case 3 -> {
                             if (playersPosition[iteration] == 7) {
                                 playersPosition[iteration] = 11;
                                 System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
-                                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             } else {
                                 playersPosition[iteration] = 11;
                                 playersMoney[iteration] += 200;
-                                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                                System.out.println(playersName[iteration] + " passed through \"GO\" and collects $200.\"");
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             }
                         }
                         case 4 -> {
                             if (playersPosition[iteration] == 7) {
                                 playersPosition[iteration] = 15;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
+                                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                                 isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration, playersPosition[iteration]);
                             } else if (playersPosition[iteration] == 22) {
                                 playersPosition[iteration] = 25;
@@ -174,7 +179,7 @@ public class PlayGame {
                         }
                         case 8 -> {
                             playersPosition[iteration] = 10;
-                            System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
+                            System.out.println(playersName[iteration] + " is IN " + fields[0][playersPosition[iteration]]);
                             playersJailTimeCounter[iteration] = 3;
                         }
                         case 9 -> {
@@ -185,6 +190,7 @@ public class PlayGame {
                             if (playersPosition[iteration] > 5) {
                                 playersPosition[iteration] = 5;
                                 playersMoney[iteration] += 200;
+                                System.out.println(playersName[iteration] + " passed through \"GO\" and collects $200.\"");
                                 System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                                 isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             } else {
@@ -213,6 +219,11 @@ public class PlayGame {
                     int index = rand.nextInt(13);
                     System.out.println(communityChest[0][index]);
                     switch (index) {
+                        case 0->{
+                            playersPosition[iteration] = 0;
+                            System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
+                            System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                        }
                         case 4 -> {
                             playersPosition[iteration] = 10;
                             // playersInJail[iteration] = true;
@@ -248,10 +259,10 @@ public class PlayGame {
                     System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                 }
                 case "Jail" -> {
-                    playersJailTimeCounter[iteration] = 3;
+                    System.out.println("Just Visiting");
                 }
                 case "Free Parking" -> {
-
+                    System.out.println("Free Parking");
                 }
             }
         }
@@ -270,7 +281,8 @@ public class PlayGame {
                 case "yes":
                     if (playersMoney[iteration] > Integer.parseInt(fields[2][playersPosition[iteration]])) {
                         playersMoney[iteration] -= Integer.parseInt(fields[2][(playersPosition[iteration])]);
-                        MethodsField.setFieldOwner(fields, iteration, playersName[iteration]);
+                        fields[1][playersPosition[iteration]] = playersName[iteration];
+                        //MethodsField.setFieldOwner(fields, iteration, playersName[iteration]);
                         System.out.println(playersName[iteration] + " successfully bought property \"" + fields[0][playersPosition[iteration]] + "\"!");
                         System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                     } else if (playersMoney[iteration] < Integer.parseInt(fields[2][playersPosition[iteration]])) {
@@ -290,9 +302,8 @@ public class PlayGame {
                     fields[1][playersPosition[iteration]].equals("Income Tax") || fields[1][playersPosition[iteration]].equals("Jail") ||
                     fields[1][playersPosition[iteration]].equals("Go To Jail") || fields[1][playersPosition[iteration]].equals("Luxury Tax") || fields[1][playersPosition[iteration]].equals("Free Parking")) {
                 isFieldSpecial(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
-            }
-            else if (fields[1][playersPosition[iteration]].equals(playersName[iteration])){ //check if Player is the owner of the field
-                System.out.println(playersName[iteration]+" is the owner of "+fields[0][playersPosition[iteration]]);
+            } else if (fields[1][playersPosition[iteration]].equals(playersName[iteration])) { //check if Player is the owner of the field
+                System.out.println(playersName[iteration] + " is the owner of " + fields[0][playersPosition[iteration]]);
 
             }
             //Player pays rent to the Owner of the field
@@ -326,12 +337,12 @@ public class PlayGame {
             String q = sc.next().toLowerCase();
             switch (q) {
                 case "yes":
-                    if (playersMoney[iteration] > Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)])) {
-                        MethodsPlayer.setPlayerMoney(playersMoney, iteration, playersMoney[iteration] - Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)]));
-                        MethodsField.setFieldOwner(fields, iteration, playersName[iteration]);
+                    if (playersMoney[iteration] > Integer.parseInt(fields[2][playersPosition[iteration]])) {
+                        playersMoney[iteration] -= Integer.parseInt(fields[2][(playersPosition[iteration])]);
+                        fields[1][playersPosition[iteration]] = playersName[iteration];
                         System.out.println(playersName[iteration] + " successfully bought property \"" + fields[0][playersPosition[iteration]] + "\"!");
                         System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-                    } else if (MethodsPlayer.getPlayerMoney(playersMoney, iteration) < Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)])) {
+                    } else if (playersMoney[iteration] < Integer.parseInt(fields[2][playersPosition[iteration]])) {
                         System.out.println(playersName[iteration] + " you don't have enough money!");
                     }
                     break;
@@ -345,36 +356,43 @@ public class PlayGame {
             //if the field have Owner
         } else if (!fields[1][playersPosition[iteration]].equals("")) {
             //Player pays rent to the Owner of the field
-            //if Player has enough moneyt
+            //if Player has enough money
             //chanceCards[0][4]
-            int count = 0; //counts how many RailRoad station the Owner has
-            if (fields[1][playersPosition[iteration]].equals(fields[1][5])) {
-                count++;
-            }
-            if (fields[1][playersPosition[iteration]].equals(fields[1][15])) {
-                count++;
-            }
-            if (fields[1][playersPosition[iteration]].equals(fields[1][25])) {
-                count++;
-            }
-            if (fields[1][playersPosition[iteration]].equals(fields[1][35])) {
-                count++;
-            }
-            if (playersMoney[iteration] > Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2) {
-                System.out.println(playersName[iteration] + " paid " + Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2 + " to " + fields[1][playersPosition[iteration]]);
-                playersMoney[iteration] -= Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2;
 
-                //adding rent money to the field Owner budget
-                for (int i = 0; i < playersName.length; i++) {
-                    if (playersName[i].equalsIgnoreCase(fields[1][playersPosition[iteration]])) {
-                        playersMoney[i] += Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2;
-                    }
+            if (fields[1][playersPosition[iteration]].equals(playersName[iteration])) {    //checks if Player is the owner of the field
+                System.out.println(playersName[iteration] + " is the owner of " + fields[0][playersPosition[iteration]]);
+
+            } else {
+                int count = 0; //counts how many RailRoad station the Owner has
+                if (fields[1][playersPosition[iteration]].equals(fields[1][5])) {
+                    count++;
                 }
-                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-            }
-            //if Player does NOT have enough money
-            else if (playersMoney[iteration] < Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2) {
-                deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                if (fields[1][playersPosition[iteration]].equals(fields[1][15])) {
+                    count++;
+                }
+                if (fields[1][playersPosition[iteration]].equals(fields[1][25])) {
+                    count++;
+                }
+                if (fields[1][playersPosition[iteration]].equals(fields[1][35])) {
+                    count++;
+                }
+
+                if (playersMoney[iteration] > Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2) {
+                    System.out.println(playersName[iteration] + " paid " + Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2 + " to " + fields[1][playersPosition[iteration]]);
+                    playersMoney[iteration] -= Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2;
+
+                    //adding rent money to the field Owner budget
+                    for (int i = 0; i < playersName.length; i++) {
+                        if (playersName[i].equalsIgnoreCase(fields[1][playersPosition[iteration]])) {
+                            playersMoney[i] += Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2;
+                        }
+                    }
+                    System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                }
+                //if Player does NOT have enough money
+                else if (playersMoney[iteration] < Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2) {
+                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                }
             }
         }
     }
@@ -385,16 +403,18 @@ public class PlayGame {
         if (fields[1][playersPosition[iteration]].equals("")) {
             System.out.println("Property \"" + fields[0][playersPosition[iteration]] + "\" is free.");
             System.out.println("Would you like to buy it?");
+            System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
+            System.out.println("Property price is " + fields[2][playersPosition[iteration]] + "$");
             System.out.print("Yes/No-> ");
             String q = sc.next().toLowerCase();
             switch (q) {
                 case "yes":
-                    if (playersMoney[iteration] > Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)])) {
-                        MethodsPlayer.setPlayerMoney(playersMoney, iteration, playersMoney[iteration] - Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)]));
-                        MethodsField.setFieldOwner(fields, iteration, playersName[iteration]);
+                    if (playersMoney[iteration] > Integer.parseInt(fields[2][playersPosition[iteration]])) {
+                        playersMoney[iteration] -= Integer.parseInt(fields[2][(playersPosition[iteration])]);
+                        fields[1][playersPosition[iteration]] = playersName[iteration];
                         System.out.println(playersName[iteration] + " successfully bought property \"" + fields[0][playersPosition[iteration]] + "\"!");
                         System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-                    } else if (MethodsPlayer.getPlayerMoney(playersMoney, iteration) < Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)])) {
+                    } else if (playersMoney[iteration] < Integer.parseInt(fields[2][playersPosition[iteration]])) {
                         System.out.println(playersName[iteration] + " you don't have enough money!");
                     }
                     break;
@@ -410,34 +430,38 @@ public class PlayGame {
             //Player pays rent to the Owner of the field
             //if Player has enough moneyt
             //chanceCards[0][5]
-            int count = 0; //counts how many Utilities the Owner has
-            int multiplier = 0;
-            if (fields[1][playersPosition[iteration]].equals(fields[1][12])) {
-                count++;
-            }
-            if (fields[1][playersPosition[iteration]].equals(fields[1][28])) {
-                count++;
-            }
-            if (count > 1) {
-                multiplier = 10;
-            } else {
-                multiplier = 4;
-            }
-            if (playersMoney[iteration] > diceSum * multiplier) {
-                System.out.println(playersName[iteration] + " paid " + diceSum * multiplier + " to " + fields[1][playersPosition[iteration]]);
-                playersMoney[iteration] -= diceSum * multiplier;
 
-                //adding rent money to the field Owner budget
-                for (int i = 0; i < playersName.length; i++) {
-                    if (playersName[i].equalsIgnoreCase(fields[1][playersPosition[iteration]])) {
-                        playersMoney[i] += diceSum * multiplier;
-                    }
+            if (fields[1][playersPosition[iteration]].equals(playersName[iteration])) {      //checks if Player is the owner of the field
+                System.out.println(playersName[iteration] + " is the owner of " + fields[0][playersPosition[iteration]]);
+
+            } else {
+                int count = 0; //counts how many Utilities the Owner has
+                int multiplier = 4;
+                if (fields[1][playersPosition[iteration]].equals(fields[1][12])) {
+                    count++;
                 }
-                System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-            }
-            //if Player does NOT have enough money
-            else if (playersMoney[iteration] < diceSum * multiplier) {
-                deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                if (fields[1][playersPosition[iteration]].equals(fields[1][28])) {
+                    count++;
+                }
+                if (count > 1) {
+                    multiplier = 10;
+                }
+                if (playersMoney[iteration] > diceSum * multiplier) {
+                    System.out.println(playersName[iteration] + " paid " + diceSum * multiplier + " to " + fields[1][playersPosition[iteration]]);
+                    playersMoney[iteration] -= diceSum * multiplier;
+
+                    //adding rent money to the field Owner budget
+                    for (int i = 0; i < playersName.length; i++) {
+                        if (playersName[i].equalsIgnoreCase(fields[1][playersPosition[iteration]])) {
+                            playersMoney[i] += diceSum * multiplier;
+                        }
+                    }
+                    System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                }
+                //if Player does NOT have enough money
+                else if (playersMoney[iteration] < diceSum * multiplier) {
+                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                }
             }
         }
     }

@@ -77,6 +77,7 @@ public class MethodsPlayer {
     public static void setPlayerPosition(int[] playersPosition, int[] playersMoney, int iteration, int diceSum) {
         if (playersPosition[iteration]+diceSum > 39) {
             playersMoney[iteration] += 200;
+            System.out.println("You passed \"GO\" and collect 200$");
             playersPosition[iteration] = (playersPosition[iteration]+diceSum) - 39;
         }else {
             playersPosition[iteration] += diceSum;
@@ -97,5 +98,11 @@ public class MethodsPlayer {
 
     public static void setPlayerJailTimeCounter(int n, int[] playersJailTimeCounter, int counter) {
         playersJailTimeCounter[n] = counter;
+    }
+    public static void promptEnterKey(){
+        System.out.println();
+        System.out.println("Row Dices");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 }

@@ -228,7 +228,7 @@ public class MethodsField {
         //communityChest[1][7] special one must check it !!!!!!!
         communityChest[1][7] = "It is your birthday. Collect $10 from every player";
         communityChest[1][8] = "100";
-        communityChest[1][9] = "100";
+        communityChest[1][9] = "-100";
         communityChest[1][10] = "-50";
         communityChest[1][11] = "25";
         communityChest[1][12] = "10";
