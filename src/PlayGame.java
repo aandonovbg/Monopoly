@@ -20,7 +20,7 @@ public class PlayGame {
                     isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
 
                     if (playersMoney[i] == 0) {
-                        deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
+                        deletePlayer(playersName, playersMoney, playersPosition, playersInJail, i);
                     }
                 } else {
                     playersJailTimeCounter[i]--;
@@ -52,7 +52,7 @@ public class PlayGame {
                 Dice.checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i, dice1, dice2);
 
                 if (playersMoney[i] < 1) {
-                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
+                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, i);
                 }
             }
         }
@@ -63,7 +63,7 @@ public class PlayGame {
         }
     }
 
-    public static void deletePlayer(String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] PlayersJailTimeCounter, int iteration) {
+    public static void deletePlayer(String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int iteration) {
         System.out.println(playersName[iteration] + " you have NO more money.\nYou are broke!");
         System.out.println("END OF GAME FOR YOU!!!");
 
@@ -86,11 +86,6 @@ public class PlayGame {
         System.arraycopy(playersInJail, 0, playersInJailTemp, 0, iteration);
         System.arraycopy(playersInJail, iteration + 1, playersInJailTemp, iteration, playersInJail.length);
         playersInJail = playersInJailTemp;
-
-        int[] PlayersJailTimeCounterTemp = new int[PlayersJailTimeCounter.length - 1];
-        System.arraycopy(PlayersJailTimeCounter, 0, PlayersJailTimeCounterTemp, 0, iteration);
-        System.arraycopy(PlayersJailTimeCounter, iteration + 1, PlayersJailTimeCounterTemp, iteration, PlayersJailTimeCounter.length);
-        PlayersJailTimeCounter = PlayersJailTimeCounterTemp;
     }
 
     public static void isFieldSpecial(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter, int iteration) {
@@ -145,15 +140,15 @@ public class PlayGame {
                                 playersPosition[iteration] = 15;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
                                 System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration, playersPosition[iteration]);
+                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             } else if (playersPosition[iteration] == 22) {
                                 playersPosition[iteration] = 25;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
-                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration, playersPosition[iteration]);
+                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             } else if (playersPosition[iteration] == 36) {
                                 playersPosition[iteration] = 5;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
-                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration, playersPosition[iteration]);
+                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
                             }
                         }
                         case 5 -> {
@@ -258,12 +253,8 @@ public class PlayGame {
                     playersMoney[iteration] -= 100;
                     System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                 }
-                case "Jail" -> {
-                    System.out.println("Just Visiting");
-                }
-                case "Free Parking" -> {
-                    System.out.println("Free Parking");
-                }
+                case "Jail" -> System.out.println("Just Visiting");
+                case "Free Parking" -> System.out.println("Free Parking");
             }
         }
     }
@@ -322,12 +313,12 @@ public class PlayGame {
             }
             //if Player does NOT have enough money
             else if (playersMoney[iteration] < Integer.parseInt(fields[3][playersPosition[iteration]])) {
-                deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                deletePlayer(playersName, playersMoney, playersPosition, playersInJail, iteration);
             }
         }
     }
 
-    public static void isRailRoadFree(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter, int iteration, int diceSum) {
+    public static void isRailRoadFree(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter, int iteration) {
         Scanner sc = new Scanner(System.in);
         //if the field is free/empty
         if (fields[1][playersPosition[iteration]].equals("")) {
@@ -391,7 +382,7 @@ public class PlayGame {
                 }
                 //if Player does NOT have enough money
                 else if (playersMoney[iteration] < Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2) {
-                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, iteration);
                 }
             }
         }
@@ -428,7 +419,7 @@ public class PlayGame {
             //if the field have Owner
         } else if (!fields[1][playersPosition[iteration]].equals("")) {
             //Player pays rent to the Owner of the field
-            //if Player has enough moneyt
+            //if Player has enough money
             //chanceCards[0][5]
 
             if (fields[1][playersPosition[iteration]].equals(playersName[iteration])) {      //checks if Player is the owner of the field
@@ -460,7 +451,7 @@ public class PlayGame {
                 }
                 //if Player does NOT have enough money
                 else if (playersMoney[iteration] < diceSum * multiplier) {
-                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, iteration);
                 }
             }
         }
