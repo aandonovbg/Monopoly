@@ -50,9 +50,48 @@ public class MethodsField {
         fieldsNamesAndOwners[0][38] = "Luxury Tax";
         fieldsNamesAndOwners[0][39] = "Boardwalk";
 
-        Arrays.fill(fieldsNamesAndOwners[1], "");
+        fieldsNamesAndOwners[1][0] = "GO";
+        fieldsNamesAndOwners[1][1] = "";
+        fieldsNamesAndOwners[1][2] = "Community Chest";
+        fieldsNamesAndOwners[1][3] = "";
+        fieldsNamesAndOwners[1][4] = "Income Tax";
+        fieldsNamesAndOwners[1][5] = "";
+        fieldsNamesAndOwners[1][6] = "";
+        fieldsNamesAndOwners[1][7] = "Chance";
+        fieldsNamesAndOwners[1][8] = "";
+        fieldsNamesAndOwners[1][9] = "";
+        fieldsNamesAndOwners[1][10] = "Jail";
+        fieldsNamesAndOwners[1][11] = "";
+        fieldsNamesAndOwners[1][12] = "";
+        fieldsNamesAndOwners[1][13] = "";
+        fieldsNamesAndOwners[1][14] = "";
+        fieldsNamesAndOwners[1][15] = "";
+        fieldsNamesAndOwners[1][16] = "";
+        fieldsNamesAndOwners[1][17] = "Community Chest";
+        fieldsNamesAndOwners[1][18] = "";
+        fieldsNamesAndOwners[1][19] = "";
+        fieldsNamesAndOwners[1][20] = "Free Parking";
+        fieldsNamesAndOwners[1][21] = "";
+        fieldsNamesAndOwners[1][22] = "Chance";
+        fieldsNamesAndOwners[1][23] = "";
+        fieldsNamesAndOwners[1][24] = "";
+        fieldsNamesAndOwners[1][25] = "";
+        fieldsNamesAndOwners[1][26] = "";
+        fieldsNamesAndOwners[1][27] = "";
+        fieldsNamesAndOwners[1][28] = "";
+        fieldsNamesAndOwners[1][29] = "";
+        fieldsNamesAndOwners[1][30] = "Go To Jail";
+        fieldsNamesAndOwners[1][31] = "";
+        fieldsNamesAndOwners[1][32] = "";
+        fieldsNamesAndOwners[1][33] = "Community Chest";
+        fieldsNamesAndOwners[1][34] = "";
+        fieldsNamesAndOwners[1][35] = "";
+        fieldsNamesAndOwners[1][36] = "Chance";
+        fieldsNamesAndOwners[1][37] = "";
+        fieldsNamesAndOwners[1][38] = "Luxury Tax";
+        fieldsNamesAndOwners[1][39] = "";
 
-        fieldsNamesAndOwners[2][0] = "GO";
+        fieldsNamesAndOwners[2][0] = "";
         fieldsNamesAndOwners[2][1] = "60";
         fieldsNamesAndOwners[2][2] = "Community Chest";
         fieldsNamesAndOwners[2][3] = "60";
@@ -138,13 +177,35 @@ public class MethodsField {
         return fieldsNamesAndOwners;
     }
 
+    public static String[] chanceCards() {
+        //[0][0]=cardsText
+        String[] chanceCards = new String[13];
+        chanceCards[0] = "Advance to \"Boardwalk\".";
+        chanceCards[1] = "Advance to \"GO\". Collect $200.";
+        chanceCards[2] = "Advance to \"Illinois Avenue\". If you pass \"GO\", collect $200.";
+        chanceCards[3] = "Advance to \"St. Charles Place\". If you pass \"GO\", collect $200.";
+        chanceCards[4] = "Advance to the nearest \"Railroad\". If unowned, you may buy it from the Bank." +
+                " If owned, pay owner twice the rental to which they are otherwise entitled.";
+        chanceCards[5] = "Advance to nearest \"Utility\". If unowned, you may buy it from the Bank." +
+                " If owned, throw dice and pay owner a total ten times amount thrown.";
+        chanceCards[6] = "Bank pays you dividend of $50.";
+        chanceCards[7] = "Go back 3 spaces.";
+        chanceCards[8] = "Go to Jail. Go directly to Jail, do not pass \"GO\", do NOT collect $200.";
+        chanceCards[9] = "Speeding fine $15";
+        chanceCards[10] = "Take a trip to \"Reading Railroad\". If you pass \"GO\", collect $200.";
+        chanceCards[11] = "You have been elected Chairman of the Board. Pay each player $50";
+        chanceCards[12] = "Your building loan matures. Collect $150";
+
+        return chanceCards;
+    }
+
     public static String[][] communityChest() {
         //[0][0]=cardsText
         //[1][0]=cardsCashAmount
-        String[][] communityChest = new String[2][13];
+        String[][] communityChest = new String[2][14];
         communityChest[0][0] = "Advance to \"GO\". Collect $200";
         communityChest[0][1] = "Bank error in your favor. Collect $200";
-        communityChest[0][2] = "Doctor?s fee. Pay $50";
+        communityChest[0][2] = "Doctor’s fee. Pay $50";
         communityChest[0][3] = "From sale of stock you get $50.";
         communityChest[0][4] = "Go to Jail. Go directly to jail, do not pass Go, do not collect $200";
         communityChest[0][5] = "Holiday fund matures. Receive $100.";
@@ -167,7 +228,7 @@ public class MethodsField {
         //communityChest[1][7] special one must check it !!!!!!!
         communityChest[1][7] = "It is your birthday. Collect $10 from every player";
         communityChest[1][8] = "100";
-        communityChest[1][9] = "100";
+        communityChest[1][9] = "-100";
         communityChest[1][10] = "-50";
         communityChest[1][11] = "25";
         communityChest[1][12] = "10";
@@ -177,38 +238,38 @@ public class MethodsField {
     }
 
     public static void isFieldSpecial(String[][] fields, String[][] communityChest, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration, int diceSum) {
-        if (fields[0][playersPosition[iteration]].equals("Community Chest") ||
-                fields[0][playersPosition[iteration]].equals("Income Tax") ||
-                fields[0][playersPosition[iteration]].equals("Go To Jail") ||
-                fields[0][playersPosition[iteration]].equals("Luxury Tax") ||
-                fields[0][playersPosition[iteration]].equals("Free Parking")) {
-            switch (fields[0][playersPosition[iteration]]) {
-                case "Community Chest":
+        if (fields[1][playersPosition[iteration]].equals("Community Chest") ||
+                fields[1][playersPosition[iteration]].equals("Income Tax") ||
+                fields[1][playersPosition[iteration]].equals("Go To Jail") ||
+                fields[1][playersPosition[iteration]].equals("Luxury Tax") ||
+                fields[1][playersPosition[iteration]].equals("Free Parking")) {
+            switch (fields[1][playersPosition[iteration]]) {
+                case "Community Chest" -> {
                     Random rand = new Random();
                     int index = rand.nextInt(14);
-                    for (int i = 0; i < communityChest[0].length; i++) {
-                        if (i == index) {
-                            System.out.println(playersName[iteration] + " the card that you drew from Community Chest is:");
-                            System.out.println(communityChest[0][index]);
-                            if (index == 7) {                      //if it is card [0][7]
-                                for (int j = 0; j < playersMoney.length; j++) {
-                                    playersMoney[j] -= 10;        //we deduct 10$ from every Player's money
-                                }
-                                playersMoney[iteration] += playersMoney.length * 10; //add the amount to the current Player's turn
-                            } else {
-                                playersMoney[iteration] += Integer.parseInt(communityChest[1][index]);
-                            }
+                    if (index == 8) {     //check if index is equal to [0][7]
+                        System.out.println(communityChest[0][index - 1]);
+                        for (int i = 0; i < playersMoney.length; i++) {
+                            playersMoney[i] -= 10;      //deduct 10$ of every player
                         }
+                        playersMoney[iteration] += playersMoney.length * 10; //add 10$ from every player to current player
+                    } else {
+                        System.out.println(communityChest[0][index - 1]);
+                        playersMoney[iteration] += Integer.parseInt(communityChest[1][index - 1]);
                     }
-                    break;
-                case "Income Tax":
-                    System.out.println("You ended up on \"Income Tax\" field and must pay 200$ to the Bank.");
+                }
+                case "Income Tax" -> {
+                    System.out.println("Pay 200$ Income TAX :)");
                     playersMoney[iteration] -= 200;
-                    break;
-                case "Go To Jail":
-                    System.out.println("You ended up on \"Go To Jail\" field and your position is moved to field \"Jail\" ");
-                    playersPosition[iteration]=10;
-                    //what we do if a Player is in Jail!!!!!!!!!!!!!!
+                }
+                case "Go To Jail" -> {
+                    System.out.println("Go straight to Jail");
+                    playersPosition[iteration] = 10;
+                }
+                case "Luxury Tax" -> {
+                    System.out.println("Pay 100$ Luxury TAX :)");
+                    playersMoney[iteration] -= 100;
+                }
             }
         }
 
@@ -218,10 +279,10 @@ public class MethodsField {
         fields[1][iteration] = name;
     }
 
-    public static String getFieldOwner(String[][] fields, int[] playersPosition, int iteration, int diceSum) {
+   /*public static String getFieldOwner(String[][] fields, int[] playersPosition, int iteration, int diceSum) {
         String fieldOwner = fields[1][playersPosition[iteration] + diceSum];
         return fieldOwner;
-    }
+   }*/
 
     public static int getFieldPrice(String[][] fields, int iteration) {
         return Integer.parseInt(fields[2][iteration]);

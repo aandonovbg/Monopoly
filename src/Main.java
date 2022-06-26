@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Main {
     public static int startMenu() {
         System.out.print("How many Players are going to play->");
@@ -10,15 +8,17 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Monopoly :)");
         System.out.print("How many Players are going to play->");
-        int n = MethodsPlayer.checkPlayerCount();
+        int playerCount = MethodsPlayer.checkPlayerCount();
 
-        String[][] communityChest=MethodsField.communityChest();
-        String[][] fields=MethodsField.initializeFieldsNamesAndOwners();
-        String[] players = MethodsPlayer.initializePlayersNames(n);
-        int []money=MethodsPlayer.initializePlayersMoney(n);
-        int [] position=MethodsPlayer.initializePlayersPosition(n);
-        boolean [] playersInJail=MethodsPlayer.initializePlayersInJail(n);
-        int [] playersJailTimeCounter=MethodsPlayer.initializePlayersJailTimeCounter(n);
-        PlayGame.startGame(fields,players,money,position,playersInJail,playersJailTimeCounter);
+        String[][] fields = MethodsField.initializeFieldsNamesAndOwners();
+        String[][] communityChest = MethodsField.communityChest();
+        String[] chanceCards = MethodsField.chanceCards();
+        String[] players = MethodsPlayer.initializePlayersNames(playerCount);
+        int[] money = MethodsPlayer.initializePlayersMoney(playerCount);
+        int[] position = MethodsPlayer.initializePlayersPosition(playerCount);
+        boolean[] playersInJail = MethodsPlayer.initializePlayersInJail(playerCount);
+        int[] playersJailTimeCounter = MethodsPlayer.initializePlayersJailTimeCounter(playerCount);
+
+        PlayGame.startGame(fields, communityChest, chanceCards, players, money, position, playersInJail, playersJailTimeCounter);
     }
 }

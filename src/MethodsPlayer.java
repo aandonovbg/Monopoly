@@ -1,15 +1,14 @@
-
 import java.util.Scanner;
 
 public class MethodsPlayer {
     public static int checkPlayerCount() {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextByte();
-        if (n < 1 || n > 4) {
+        int playerCount = sc.nextByte();
+        if (playerCount < 1 || playerCount > 4) {
             System.out.println("Players range can be from 1 to 4");
             return Main.startMenu();
         }
-        return n;
+        return playerCount;
     }
 
     public static String[] initializePlayersNames(int n) {
@@ -17,7 +16,7 @@ public class MethodsPlayer {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < n; i++) {
             System.out.print("Player " + (i + 1) + " name->");
-            players[i]= sc.nextLine();
+            players[i] = sc.nextLine();
         }
         return players;
     }
@@ -63,20 +62,26 @@ public class MethodsPlayer {
         playersNames[iteration] = name;
     }
 
-    public static int getPlayerMoney(int[] playersMoney,int iteration ) {
+    public static int getPlayerMoney(int[] playersMoney, int iteration) {
         return playersMoney[iteration];
     }
 
-    public static void setPlayerMoney(int[] playersMoney,int n, int money) {
+    public static void setPlayerMoney(int[] playersMoney, int n, int money) {
         playersMoney[n] = money;
     }
 
-    public static int getPlayerPosition(int[] playersPosition,int iteration) {
+    public static int getPlayerPosition(int[] playersPosition, int iteration) {
         return playersPosition[iteration];
     }
 
-    public static void setPlayerPosition(int[] playersPosition,int iteration, int diceSum) {
-        playersPosition[iteration] += diceSum;
+    public static void setPlayerPosition(int[] playersPosition, int[] playersMoney, int iteration, int diceSum) {
+        if (playersPosition[iteration]+diceSum > 39) {
+            playersMoney[iteration] += 200;
+            System.out.println("You passed \"GO\" and collect 200$");
+            playersPosition[iteration] = (playersPosition[iteration]+diceSum) - 39;
+        }else {
+            playersPosition[iteration] += diceSum;
+        }
     }
 
     public static boolean getPlayerInJail(int n, boolean[] playersInJail) {
@@ -93,5 +98,11 @@ public class MethodsPlayer {
 
     public static void setPlayerJailTimeCounter(int n, int[] playersJailTimeCounter, int counter) {
         playersJailTimeCounter[n] = counter;
+    }
+    public static void promptEnterKey(){
+        System.out.println();
+        System.out.println("Row Dices");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 }
