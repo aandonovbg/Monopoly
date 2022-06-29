@@ -8,7 +8,8 @@ public class MethodsField {
         //[2][0]=fieldsPrice
         //[3][0]=fieldsRent
         //[4][0]=fieldColor
-        String[][] fieldsNamesAndOwners = new String[5][40];
+        //[5][0]=houseCount
+        String[][] fieldsNamesAndOwners = new String[6][40];
 
         fieldsNamesAndOwners[0][0] = "GO";
         fieldsNamesAndOwners[0][1] = "Mediterranean Avenue";
@@ -52,9 +53,9 @@ public class MethodsField {
         fieldsNamesAndOwners[0][39] = "Boardwalk";
 
         fieldsNamesAndOwners[1][0] = "GO";
-        fieldsNamesAndOwners[1][1] = "";
+        fieldsNamesAndOwners[1][1] = "Todor";
         fieldsNamesAndOwners[1][2] = "Community Chest";
-        fieldsNamesAndOwners[1][3] = "";
+        fieldsNamesAndOwners[1][3] = "Todor";
         fieldsNamesAndOwners[1][4] = "Income Tax";
         fieldsNamesAndOwners[1][5] = "";
         fieldsNamesAndOwners[1][6] = "";
@@ -217,6 +218,47 @@ public class MethodsField {
         fieldsNamesAndOwners[4][38] = "Luxury Tax";
         fieldsNamesAndOwners[4][39] = "Blue";
 
+        fieldsNamesAndOwners[5][0] = "GO";
+        fieldsNamesAndOwners[5][1] = "0";
+        fieldsNamesAndOwners[5][2] = "Community Chest";
+        fieldsNamesAndOwners[5][3] = "0";
+        fieldsNamesAndOwners[5][4] = "Income Tax";
+        fieldsNamesAndOwners[5][5] = "0";
+        fieldsNamesAndOwners[5][6] = "0";
+        fieldsNamesAndOwners[5][7] = "Chance";
+        fieldsNamesAndOwners[5][8] = "0";
+        fieldsNamesAndOwners[5][9] = "0";
+        fieldsNamesAndOwners[5][10] = "Jail";
+        fieldsNamesAndOwners[5][11] = "0";
+        fieldsNamesAndOwners[5][12] = "0";
+        fieldsNamesAndOwners[5][13] = "0";
+        fieldsNamesAndOwners[5][14] = "0";
+        fieldsNamesAndOwners[5][15] = "0";
+        fieldsNamesAndOwners[5][16] = "0";
+        fieldsNamesAndOwners[5][17] = "Community Chest";
+        fieldsNamesAndOwners[5][18] = "0";
+        fieldsNamesAndOwners[5][19] = "0";
+        fieldsNamesAndOwners[5][20] = "Free Parking";
+        fieldsNamesAndOwners[5][21] = "0";
+        fieldsNamesAndOwners[5][22] = "Chance";
+        fieldsNamesAndOwners[5][23] = "0";
+        fieldsNamesAndOwners[5][24] = "0";
+        fieldsNamesAndOwners[5][25] = "0";
+        fieldsNamesAndOwners[5][26] = "0";
+        fieldsNamesAndOwners[5][27] = "0";
+        fieldsNamesAndOwners[5][28] = "0";
+        fieldsNamesAndOwners[5][29] = "0";
+        fieldsNamesAndOwners[5][30] = "Go To Jail";
+        fieldsNamesAndOwners[5][31] = "0";
+        fieldsNamesAndOwners[5][32] = "0";
+        fieldsNamesAndOwners[5][33] = "Community Chest";
+        fieldsNamesAndOwners[5][34] = "0";
+        fieldsNamesAndOwners[5][35] = "0";
+        fieldsNamesAndOwners[5][36] = "Chance";
+        fieldsNamesAndOwners[5][37] = "0";
+        fieldsNamesAndOwners[5][38] = "Luxury Tax";
+        fieldsNamesAndOwners[5][39] = "0";
+
         return fieldsNamesAndOwners;
     }
 
@@ -282,463 +324,7 @@ public class MethodsField {
 
     //HOW WE BUILD HOUSES!!!!
 
-    public static ArrayList<String> createdNeighborhoods(String[][] fields, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration) {
-        ArrayList<String> buildHouseEnabled = new ArrayList<>();
 
-        if (fields[1][1].equals(playersName[iteration]) && fields[1][3].equals(playersName[iteration])) {
-            buildHouseEnabled.add("Brown");
-            System.out.println(playersName[iteration] + " can build houses on \"Brown\" Neighborhood");
-        } else if (fields[1][6].equals(playersName[iteration]) && fields[1][8].equals(playersName[iteration]) && fields[1][9].equals(playersName[iteration])) {
-            buildHouseEnabled.add("Light Blue");
-            System.out.println(playersName[iteration] + " can build houses on \"Light Blue\" Neighborhood");
-        } else if (fields[1][11].equals(playersName[iteration]) && fields[1][13].equals(playersName[iteration]) && fields[1][14].equals(playersName[iteration])) {
-            buildHouseEnabled.add("Pink");
-            System.out.println(playersName[iteration] + " can build houses on \"Pink\" Neighborhood");
-        } else if (fields[1][16].equals(playersName[iteration]) && fields[1][18].equals(playersName[iteration]) && fields[1][19].equals(playersName[iteration])) {
-            buildHouseEnabled.add("Orange");
-            System.out.println(playersName[iteration] + " can build houses on \"Orange\" Neighborhood");
-        } else if (fields[1][21].equals(playersName[iteration]) && fields[1][23].equals(playersName[iteration]) && fields[1][24].equals(playersName[iteration])) {
-            buildHouseEnabled.add("Red");
-            System.out.println(playersName[iteration] + " can build houses on \"Red\" Neighborhood");
-        } else if (fields[1][26].equals(playersName[iteration]) && fields[1][27].equals(playersName[iteration]) && fields[1][29].equals(playersName[iteration])) {
-            buildHouseEnabled.add("Yellow");
-            System.out.println(playersName[iteration] + " can build houses on \"Yellow\" Neighborhood");
-        } else if (fields[1][31].equals(playersName[iteration]) && fields[1][32].equals(playersName[iteration]) && fields[1][34].equals(playersName[iteration])) {
-            buildHouseEnabled.add("Green");
-            System.out.println(playersName[iteration] + " can build houses on \"Green\" Neighborhood");
-        } else if (fields[1][37].equals(playersName[iteration]) && fields[1][38].equals(playersName[iteration])) {
-            buildHouseEnabled.add("Blue");
-            System.out.println(playersName[iteration] + " can build houses on \"Blue\" Neighborhood");
-        }
-        return buildHouseEnabled;
-    }
-
-    public static void checkIfNeighborHoodIsEnabled(ArrayList<String> buildHouseEnabled, String[][] fields, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration) {
-        if (!buildHouseEnabled.isEmpty()) {
-            if (buildHouseEnabled.size() > 1) {
-                System.out.println(playersName[iteration] + " can build houses on following neighborhoods:");
-                for (String s : buildHouseEnabled) {
-                    System.out.println(s);
-                }
-            } else {
-                System.out.println(playersName[iteration] + " can build houses on" + buildHouseEnabled.get(0) + "neighborhood");
-            }
-            System.out.println("Do you want to build houses?");
-            System.out.print("Yes/No-> ");
-            Scanner sc = new Scanner(System.in);
-            String q = sc.next().toLowerCase();
-            switch (q) {
-                case "yes" -> {
-                    buildHouses(buildHouseEnabled, fields, playersName, playersMoney, playersPosition, iteration);
-                }
-                case "no" -> {
-//      HAVE TO FILL IN NO
-                }
-                default ->
-                        checkIfNeighborHoodIsEnabled(buildHouseEnabled, fields, playersName, playersMoney, playersPosition, iteration);
-            }
-        }
-    }
-
-    public static void buildHouses(ArrayList<String> buildHouseEnabled, String[][] fields, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration) {
-        if (buildHouseEnabled.size() > 1) {
-            System.out.print("choose neighborhood-> ");
-            Scanner sc = new Scanner(System.in);
-            String q = sc.nextLine().toLowerCase();
-            int houseCounter = 0;
-            switch (q) {
-                case "brown" -> {
-                    System.out.println("The price of 1 House is 50$");
-                    System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
-                    System.out.println("How many houses you want to build?");
-                    houseCounter = sc.nextInt();
-                    if (playersMoney[iteration] < houseCounter * 50) {
-                        System.out.println(playersName[iteration] + " you don't have enough money!");
-                    } else if (playersMoney[iteration] > houseCounter * 50) {
-                        System.out.println("Which property you want to build House on?");
-                        System.out.println("1.\"" + fields[0][1] + "\"");
-                        System.out.println("2.\"" + fields[0][3] + "\"");
-                        System.out.print("Choose number 1 or 2-> ");
-                        int n = sc.nextInt();
-                        switch (n) {
-                            case 1 -> {
-                                if (houseCounter == 1) {
-                                    fields[3][1] = "10";
-                                } else if (houseCounter == 2) {
-                                    fields[3][1] = "30";
-                                } else if (houseCounter==3) {
-                                    fields[3][1] = "90";
-                                } else if (houseCounter==4) {
-                                    fields[3][1] = "160";
-                                }
-                            }
-                            case 2->{
-                                if (houseCounter == 1) {
-                                    fields[3][3] = "20";
-                                } else if (houseCounter == 2) {
-                                    fields[3][3] = "60";
-                                } else if (houseCounter==3) {
-                                    fields[3][3] = "180";
-                                } else if (houseCounter==4) {
-                                    fields[3][3] = "320";
-                                }
-                            }
-                        }
-
-                    }
-                }
-                case "light blue" -> {
-                    System.out.println("The price of 1 House is 50$");
-                    System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
-                    System.out.println("How many houses you want to build?");
-                    houseCounter = sc.nextInt();
-                    if (playersMoney[iteration] < houseCounter * 50) {
-                        System.out.println(playersName[iteration] + " you don't have enough money!");
-                    } else if (playersMoney[iteration] > houseCounter * 50) {
-                        System.out.println("Which property you want to build House on?");
-                        System.out.println("1.\"" + fields[0][6] + "\"");
-                        System.out.println("2.\"" + fields[0][8] + "\"");
-                        System.out.println("3.\"" + fields[0][9] + "\"");
-                        System.out.print("Choose number from 1 to 3-> ");
-                        int n = sc.nextInt();
-                        switch (n) {
-                            case 1 -> {
-                                if (houseCounter == 1) {
-                                    fields[3][6] = "30";
-                                } else if (houseCounter == 2) {
-                                    fields[3][6] = "90";
-                                } else if (houseCounter==3) {
-                                    fields[3][6] = "270";
-                                } else if (houseCounter==4) {
-                                    fields[3][6] = "400";
-                                }
-                            }
-                            case 2->{
-                                if (houseCounter == 1) {
-                                    fields[3][8] = "30";
-                                } else if (houseCounter == 2) {
-                                    fields[3][8] = "90";
-                                } else if (houseCounter==3) {
-                                    fields[3][8] = "270";
-                                } else if (houseCounter==4) {
-                                    fields[3][8] = "400";
-                                }
-                            }
-                            case 3->{
-                                if (houseCounter == 1) {
-                                    fields[3][9] = "40";
-                                } else if (houseCounter == 2) {
-                                    fields[3][9] = "100";
-                                } else if (houseCounter==3) {
-                                    fields[3][9] = "300";
-                                } else if (houseCounter==4) {
-                                    fields[3][9] = "450";
-                                }
-                            }
-                        }
-
-                    }
-                }
-                case "pink"->{
-                    System.out.println("The price of 1 House is 100");
-                    System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
-                    System.out.println("How many houses you want to build?");
-                    houseCounter = sc.nextInt();
-                    if (playersMoney[iteration] < houseCounter * 100) {
-                        System.out.println(playersName[iteration] + " you don't have enough money!");
-                    } else if (playersMoney[iteration] > houseCounter * 100) {
-                        System.out.println("Which property you want to build House on?");
-                        System.out.println("1.\"" + fields[0][11] + "\"");
-                        System.out.println("2.\"" + fields[0][13] + "\"");
-                        System.out.println("3.\"" + fields[0][14] + "\"");
-                        System.out.print("Choose number from 1 to 3-> ");
-                        int n = sc.nextInt();
-                        switch (n) {
-                            case 1 -> {
-                                if (houseCounter == 1) {
-                                    fields[3][11] = "50";
-                                } else if (houseCounter == 2) {
-                                    fields[3][11] = "150";
-                                } else if (houseCounter==3) {
-                                    fields[3][11] = "450";
-                                } else if (houseCounter==4) {
-                                    fields[3][11] = "625";
-                                }
-                            }
-                            case 2->{
-                                if (houseCounter == 1) {
-                                    fields[3][13] = "50";
-                                } else if (houseCounter == 2) {
-                                    fields[3][13] = "150";
-                                } else if (houseCounter==3) {
-                                    fields[3][13] = "450";
-                                } else if (houseCounter==4) {
-                                    fields[3][13] = "625";
-                                }
-                            }
-                            case 3->{
-                                if (houseCounter == 1) {
-                                    fields[3][14] = "60";
-                                } else if (houseCounter == 2) {
-                                    fields[3][14] = "180";
-                                } else if (houseCounter==3) {
-                                    fields[3][14] = "500";
-                                } else if (houseCounter==4) {
-                                    fields[3][14] = "700";
-                                }
-                            }
-                        }
-                    }
-                }
-                case "orange"->{
-                    System.out.println("The price of 1 House is 100");
-                    System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
-                    System.out.println("How many houses you want to build?");
-                    houseCounter = sc.nextInt();
-                    if (playersMoney[iteration] < houseCounter * 100) {
-                        System.out.println(playersName[iteration] + " you don't have enough money!");
-                    } else if (playersMoney[iteration] > houseCounter * 100) {
-                        System.out.println("Which property you want to build House on?");
-                        System.out.println("1.\"" + fields[0][16] + "\"");
-                        System.out.println("2.\"" + fields[0][18] + "\"");
-                        System.out.println("3.\"" + fields[0][19] + "\"");
-                        System.out.print("Choose number from 1 to 3-> ");
-                        int n = sc.nextInt();
-                        switch (n) {
-                            case 1 -> {
-                                if (houseCounter == 1) {
-                                    fields[3][16] = "70";
-                                } else if (houseCounter == 2) {
-                                    fields[3][16] = "200";
-                                } else if (houseCounter==3) {
-                                    fields[3][16] = "550";
-                                } else if (houseCounter==4) {
-                                    fields[3][16] = "750";
-                                }
-                            }
-                            case 2->{
-                                if (houseCounter == 1) {
-                                    fields[3][18] = "70";
-                                } else if (houseCounter == 2) {
-                                    fields[3][18] = "200";
-                                } else if (houseCounter==3) {
-                                    fields[3][18] = "550";
-                                } else if (houseCounter==4) {
-                                    fields[3][18] = "750";
-                                }
-                            }
-                            case 3->{
-                                if (houseCounter == 1) {
-                                    fields[3][19] = "80";
-                                } else if (houseCounter == 2) {
-                                    fields[3][19] = "220";
-                                } else if (houseCounter==3) {
-                                    fields[3][19] = "600";
-                                } else if (houseCounter==4) {
-                                    fields[3][19] = "800";
-                                }
-                            }
-                        }
-                    }
-                }
-                case "red"->{
-                    System.out.println("The price of 1 House is 150");
-                    System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
-                    System.out.println("How many houses you want to build?");
-                    houseCounter = sc.nextInt();
-                    if (playersMoney[iteration] < houseCounter * 150) {
-                        System.out.println(playersName[iteration] + " you don't have enough money!");
-                    } else if (playersMoney[iteration] > houseCounter * 150) {
-                        System.out.println("Which property you want to build House on?");
-                        System.out.println("1.\"" + fields[0][21] + "\"");
-                        System.out.println("2.\"" + fields[0][23] + "\"");
-                        System.out.println("3.\"" + fields[0][24] + "\"");
-                        System.out.print("Choose number from 1 to 3-> ");
-                        int n = sc.nextInt();
-                        switch (n) {
-                            case 1 -> {
-                                if (houseCounter == 1) {
-                                    fields[3][21] = "90";
-                                } else if (houseCounter == 2) {
-                                    fields[3][21] = "250";
-                                } else if (houseCounter==3) {
-                                    fields[3][21] = "700";
-                                } else if (houseCounter==4) {
-                                    fields[3][21] = "875";
-                                }
-                            }
-                            case 2->{
-                                if (houseCounter == 1) {
-                                    fields[3][23] = "90";
-                                } else if (houseCounter == 2) {
-                                    fields[3][23] = "250";
-                                } else if (houseCounter==3) {
-                                    fields[3][23] = "700";
-                                } else if (houseCounter==4) {
-                                    fields[3][23] = "875";
-                                }
-                            }
-                            case 3->{
-                                if (houseCounter == 1) {
-                                    fields[3][24] = "100";
-                                } else if (houseCounter == 2) {
-                                    fields[3][24] = "300";
-                                } else if (houseCounter==3) {
-                                    fields[3][24] = "750";
-                                } else if (houseCounter==4) {
-                                    fields[3][24] = "925";
-                                }
-                            }
-                        }
-                    }
-                }
-                case "yellow"->{
-                    System.out.println("The price of 1 House is 150");
-                    System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
-                    System.out.println("How many houses you want to build?");
-                    houseCounter = sc.nextInt();
-                    if (playersMoney[iteration] < houseCounter * 150) {
-                        System.out.println(playersName[iteration] + " you don't have enough money!");
-                    } else if (playersMoney[iteration] > houseCounter * 150) {
-                        System.out.println("Which property you want to build House on?");
-                        System.out.println("1.\"" + fields[0][26] + "\"");
-                        System.out.println("2.\"" + fields[0][27] + "\"");
-                        System.out.println("3.\"" + fields[0][29] + "\"");
-                        System.out.print("Choose number from 1 to 3-> ");
-                        int n = sc.nextInt();
-                        switch (n) {
-                            case 1 -> {
-                                if (houseCounter == 1) {
-                                    fields[3][26] = "110";
-                                } else if (houseCounter == 2) {
-                                    fields[3][26] = "330";
-                                } else if (houseCounter==3) {
-                                    fields[3][26] = "800";
-                                } else if (houseCounter==4) {
-                                    fields[3][26] = "975";
-                                }
-                            }
-                            case 2->{
-                                if (houseCounter == 1) {
-                                    fields[3][27] = "110";
-                                } else if (houseCounter == 2) {
-                                    fields[3][27] = "330";
-                                } else if (houseCounter==3) {
-                                    fields[3][27] = "800";
-                                } else if (houseCounter==4) {
-                                    fields[3][27] = "975";
-                                }
-                            }
-                            case 3->{
-                                if (houseCounter == 1) {
-                                    fields[3][29] = "120";
-                                } else if (houseCounter == 2) {
-                                    fields[3][29] = "360";
-                                } else if (houseCounter==3) {
-                                    fields[3][29] = "850";
-                                } else if (houseCounter==4) {
-                                    fields[3][29] = "1025";
-                                }
-                            }
-                        }
-                    }
-                }
-                case "green"->{
-                    System.out.println("The price of 1 House is 200");
-                    System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
-                    System.out.println("How many houses you want to build?");
-                    houseCounter = sc.nextInt();
-                    if (playersMoney[iteration] < houseCounter * 200) {
-                        System.out.println(playersName[iteration] + " you don't have enough money!");
-                    } else if (playersMoney[iteration] > houseCounter * 200) {
-                        System.out.println("Which property you want to build House on?");
-                        System.out.println("1.\"" + fields[0][31] + "\"");
-                        System.out.println("2.\"" + fields[0][32] + "\"");
-                        System.out.println("3.\"" + fields[0][34] + "\"");
-                        System.out.print("Choose number from 1 to 3-> ");
-                        int n = sc.nextInt();
-                        switch (n) {
-                            case 1 -> {
-                                if (houseCounter == 1) {
-                                    fields[3][31] = "130";
-                                } else if (houseCounter == 2) {
-                                    fields[3][31] = "390";
-                                } else if (houseCounter==3) {
-                                    fields[3][31] = "900";
-                                } else if (houseCounter==4) {
-                                    fields[3][31] = "1100";
-                                }
-                            }
-                            case 2->{
-                                if (houseCounter == 1) {
-                                    fields[3][32] = "130";
-                                } else if (houseCounter == 2) {
-                                    fields[3][32] = "390";
-                                } else if (houseCounter==3) {
-                                    fields[3][32] = "900";
-                                } else if (houseCounter==4) {
-                                    fields[3][32] = "1100";
-                                }
-                            }
-                            case 3->{
-                                if (houseCounter == 1) {
-                                    fields[3][34] = "150";
-                                } else if (houseCounter == 2) {
-                                    fields[3][34] = "450";
-                                } else if (houseCounter==3) {
-                                    fields[3][34] = "1000";
-                                } else if (houseCounter==4) {
-                                    fields[3][34] = "1200";
-                                }
-                            }
-                        }
-                    }
-                }
-                case "blue"->{
-                    System.out.println("The price of 1 House is 200");
-                    System.out.println("You have " + playersMoney[iteration] + "$ left in your Bank Account.");
-                    System.out.println("How many houses you want to build?");
-                    houseCounter = sc.nextInt();
-                    if (playersMoney[iteration] < houseCounter * 200) {
-                        System.out.println(playersName[iteration] + " you don't have enough money!");
-                    } else if (playersMoney[iteration] > houseCounter * 200) {
-                        System.out.println("Which property you want to build House on?");
-                        System.out.println("1.\"" + fields[0][37] + "\"");
-                        System.out.println("2.\"" + fields[0][39] + "\"");
-                        System.out.print("Choose number 1 or 2-> ");
-                        int n = sc.nextInt();
-                        switch (n) {
-                            case 1 -> {
-                                if (houseCounter == 1) {
-                                    fields[3][1] = "175";
-                                } else if (houseCounter == 2) {
-                                    fields[3][1] = "500";
-                                } else if (houseCounter==3) {
-                                    fields[3][1] = "1100";
-                                } else if (houseCounter==4) {
-                                    fields[3][1] = "1300";
-                                }
-                            }
-                            case 2->{
-                                if (houseCounter == 1) {
-                                    fields[3][3] = "200";
-                                } else if (houseCounter == 2) {
-                                    fields[3][3] = "600";
-                                } else if (houseCounter==3) {
-                                    fields[3][3] = "1400";
-                                } else if (houseCounter==4) {
-                                    fields[3][3] = "1700";
-                                }
-                            }
-                        }
-
-                    }
-                }
-            }
-        } else {
-            switch (buildHouseEnabled.get(0)) {
-
-            }
-        }
-    }
 }
+
+

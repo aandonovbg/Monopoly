@@ -57,6 +57,7 @@ public class MethodsPlayer {
         if (playersPosition[iteration] + diceSum > 39) {
             playersMoney[iteration] += 200;
             System.out.println("You passed \"GO\" and collect 200$");
+            System.out.println("You have " + playersMoney[iteration] + " left in Bank Account.");
             playersPosition[iteration] = (playersPosition[iteration] + diceSum) - 39;
         } else {
             playersPosition[iteration] += diceSum;
@@ -65,7 +66,7 @@ public class MethodsPlayer {
 
     public static void promptEnterKey() {
         System.out.println();
-        System.out.println("Row Dices");
+        System.out.println("Row Dices(Press Enter)");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }

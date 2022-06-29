@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class PlayGame {
 
     public static void startGame(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter) {
         for (int i = 0; i < playersName.length; i++) {
-            MethodsField.checkIfNeighborHoodIsEnabled(MethodsField.createdNeighborhoods(fields,playersName,playersMoney,playersPosition,i),fields,playersName,playersMoney,playersPosition,i);
+            Houses.checkIfNeighborHoodIsEnabled(Houses.createdNeighborhoods(fields, playersName, i), fields, playersName, playersMoney, i);
             if (playersJailTimeCounter[i] > 0) { //check for JailTime
                 MethodsPlayer.promptEnterKey();
                 int dice1 = Dice.throwDice();
@@ -22,7 +22,7 @@ public class PlayGame {
                     isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i);
 
                     if (playersMoney[i] == 0) {
-                        deletePlayer(playersName, playersMoney, playersPosition, playersInJail, i);
+                        deletePlayer(playersName, playersMoney, playersPosition, i);
                     }
                 } else {
                     playersJailTimeCounter[i]--;
@@ -54,7 +54,7 @@ public class PlayGame {
                 Dice.checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, i, dice1, dice2);
 
                 if (playersMoney[i] < 1) {
-                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, i);
+                    deletePlayer(playersName, playersMoney, playersPosition, i);
                 }
             }
         }
@@ -65,29 +65,28 @@ public class PlayGame {
         }
     }
 
-    public static void deletePlayer(String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int iteration) {
+    public static void deletePlayer(String[] playersName, int[] playersMoney, int[] playersPosition, int iteration) {
         System.out.println(playersName[iteration] + " you have NO more money.\nYou are broke!");
         System.out.println("END OF GAME FOR YOU!!!");
 
         String[] playersNameTemp = new String[playersName.length - 1];
+
         System.arraycopy(playersName, 0, playersNameTemp, 0, iteration);
-        System.arraycopy(playersName, iteration + 1, playersNameTemp, iteration, playersName.length);
+        System.arraycopy(playersName, iteration + 1, playersNameTemp, iteration, playersName.length - 1 - iteration);
         playersName = playersNameTemp;
 
         int[] playerMoneyTemp = new int[playersMoney.length - 1];
+
         System.arraycopy(playersMoney, 0, playerMoneyTemp, 0, iteration);
-        System.arraycopy(playersMoney, iteration + 1, playerMoneyTemp, iteration, playersMoney.length);
+        System.arraycopy(playersMoney, iteration + 1, playerMoneyTemp, iteration, playersMoney.length - 1 - iteration);
         playersMoney = playerMoneyTemp;
 
         int[] playerPositionTemp = new int[playersPosition.length - 1];
+
         System.arraycopy(playersPosition, 0, playerPositionTemp, 0, iteration);
-        System.arraycopy(playersPosition, iteration + 1, playerPositionTemp, iteration, playersPosition.length);
+        System.arraycopy(playersPosition, iteration + 1, playerPositionTemp, iteration, playersPosition.length - 1 - iteration);
         playersPosition = playerPositionTemp;
 
-        boolean[] playersInJailTemp = new boolean[playersInJail.length - 1];
-        System.arraycopy(playersInJail, 0, playersInJailTemp, 0, iteration);
-        System.arraycopy(playersInJail, iteration + 1, playersInJailTemp, iteration, playersInJail.length);
-        playersInJail = playersInJailTemp;
     }
 
     public static void isFieldSpecial(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter, int iteration) {
@@ -216,7 +215,7 @@ public class PlayGame {
                     int index = rand.nextInt(13);
                     System.out.println(communityChest[0][index]);
                     switch (index) {
-                        case 0->{
+                        case 0 -> {
                             playersPosition[iteration] = 0;
                             System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
                             System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
@@ -242,7 +241,7 @@ public class PlayGame {
                 case "Income Tax" -> {
                     System.out.println("Pay 200$ Income TAX :)");
                     playersMoney[iteration] -= 200;
-                    System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+
                 }
                 case "Go To Jail" -> {
                     System.out.println("Go straight to Jail");
@@ -317,10 +316,10 @@ public class PlayGame {
             }
             //if Player does NOT have enough money
             else if (playersMoney[iteration] < Integer.parseInt(fields[3][playersPosition[iteration]])) {
-                deletePlayer(playersName, playersMoney, playersPosition, playersInJail, iteration);
+                deletePlayer(playersName, playersMoney, playersPosition, iteration);
                 for (int i = 0; i < fields.length; i++) {
-                    if (fields[1][i].equals(playersName[iteration])){
-                        fields[1][i]="";
+                    if (fields[1][i].equals(playersName[iteration])) {
+                        fields[1][i] = "";
                     }
                 }
             }
@@ -391,7 +390,7 @@ public class PlayGame {
                 }
                 //if Player does NOT have enough money
                 else if (playersMoney[iteration] < Integer.parseInt(fields[3][playersPosition[iteration]]) * count * 2) {
-                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, iteration);
+                    deletePlayer(playersName, playersMoney, playersPosition, iteration);
                 }
             }
         }
@@ -399,6 +398,8 @@ public class PlayGame {
 
     public static void isUtilityFree(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter, int iteration, int diceSum) {
         Scanner sc = new Scanner(System.in);
+        int count = 0; //counts how many Utilities the Owner has
+        int multiplier = 4;
         //if the field is free/empty
         if (fields[1][playersPosition[iteration]].equals("")) {
             System.out.println("Property \"" + fields[0][playersPosition[iteration]] + "\" is free.");
@@ -435,8 +436,7 @@ public class PlayGame {
                 System.out.println(playersName[iteration] + " is the owner of " + fields[0][playersPosition[iteration]]);
 
             } else {
-                int count = 0; //counts how many Utilities the Owner has
-                int multiplier = 4;
+
                 if (fields[1][playersPosition[iteration]].equals(fields[1][12])) {
                     count++;
                 }
@@ -460,7 +460,7 @@ public class PlayGame {
                 }
                 //if Player does NOT have enough money
                 else if (playersMoney[iteration] < diceSum * multiplier) {
-                    deletePlayer(playersName, playersMoney, playersPosition, playersInJail, iteration);
+                    deletePlayer(playersName, playersMoney, playersPosition, iteration);
                 }
             }
         }
