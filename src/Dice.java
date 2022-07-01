@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Dice {
     public static int throwDice() {
@@ -7,11 +8,18 @@ public class Dice {
         return rand.nextInt(6) + 1;
     }
 
-    public static void checkForPair(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, boolean[] playersInJail, int[] playersJailTimeCounter, int iteration, int dice1, int dice2) {
+    public static void promptEnterKey() {
+        System.out.println();
+        System.out.println("Row Dices(Press Enter)");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+    }
+
+    public static void checkForPair(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition,  int[] playersJailTimeCounter,String[]fieldsInitialPrices, int iteration, int dice1, int dice2) {
 
         if (dice1 == dice2) {
             System.out.println(playersName[iteration] + " threw a PAIR and he must throw again");
-            MethodsPlayer.promptEnterKey();
+            promptEnterKey();
             dice1 = Dice.throwDice();
             dice2 = Dice.throwDice();
 
@@ -20,9 +28,9 @@ public class Dice {
                 MethodsPlayer.setPlayerPosition(playersPosition, playersMoney, iteration, dice1 + dice2);//player's NEW position is applied to arr index
                 System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
 
-                PlayGame.isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                PlayGame.isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter,fieldsInitialPrices, iteration);
                 if (dice1 == dice2) {
-                    checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration, dice1, dice2);
+                    checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter,fieldsInitialPrices, iteration, dice1, dice2);
                 }
             } else {
 
@@ -33,10 +41,10 @@ public class Dice {
 
                     MethodsPlayer.setPlayerPosition(playersPosition, playersMoney, iteration, dice1 + dice2);
                     System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
-                    PlayGame.isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
+                    PlayGame.isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter,fieldsInitialPrices, iteration);
 
                     if (playersMoney[iteration] == 0) {
-                        PlayGame.deletePlayer(playersName, playersMoney, playersPosition, iteration);
+                        PlayGame.deletePlayer(fields,playersName, playersMoney, playersPosition,fieldsInitialPrices, iteration);
                     }
                 } else {
                     System.out.println(playersName[iteration] + " has " + playersJailTimeCounter[iteration] + " turn left in Jail ");

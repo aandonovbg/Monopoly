@@ -58,10 +58,10 @@ public class MethodsField {
         fieldsNamesAndOwners[1][3] = "Todor";
         fieldsNamesAndOwners[1][4] = "Income Tax";
         fieldsNamesAndOwners[1][5] = "";
-        fieldsNamesAndOwners[1][6] = "";
+        fieldsNamesAndOwners[1][6] = "Todor";
         fieldsNamesAndOwners[1][7] = "Chance";
-        fieldsNamesAndOwners[1][8] = "";
-        fieldsNamesAndOwners[1][9] = "";
+        fieldsNamesAndOwners[1][8] = "Todor";
+        fieldsNamesAndOwners[1][9] = "Todor";
         fieldsNamesAndOwners[1][10] = "Jail";
         fieldsNamesAndOwners[1][11] = "";
         fieldsNamesAndOwners[1][12] = "";
@@ -262,6 +262,8 @@ public class MethodsField {
         return fieldsNamesAndOwners;
     }
 
+
+
     public static String[] chanceCards() {
         //[0][0]=cardsText
         String[] chanceCards = new String[13];
@@ -321,10 +323,51 @@ public class MethodsField {
         return communityChest;
     }
 
+    public static String[] fieldsInitialPrices() {
+        String [] fieldsInitialPrices=new String[40];
+        fieldsInitialPrices[0] = "";
+        fieldsInitialPrices[1] = "60";
+        fieldsInitialPrices[2] = "Community Chest";
+        fieldsInitialPrices[3] = "60";
+        fieldsInitialPrices[4] = "Income Tax";
+        fieldsInitialPrices[5] = "200";
+        fieldsInitialPrices[6] = "100";
+        fieldsInitialPrices[7] = "Chance";
+        fieldsInitialPrices[8] = "100";
+        fieldsInitialPrices[9] = "120";
+        fieldsInitialPrices[10] = "Jail";
+        fieldsInitialPrices[11] = "140";
+        fieldsInitialPrices[12] = "150";
+        fieldsInitialPrices[13] = "140";
+        fieldsInitialPrices[14] = "160";
+        fieldsInitialPrices[15] = "200";
+        fieldsInitialPrices[16] = "180";
+        fieldsInitialPrices[17] = "Community Chest";
+        fieldsInitialPrices[18] = "180";
+        fieldsInitialPrices[19] = "200";
+        fieldsInitialPrices[20] = "";
+        fieldsInitialPrices[21] = "220";
+        fieldsInitialPrices[22] = "Chance";
+        fieldsInitialPrices[23] = "220";
+        fieldsInitialPrices[24] = "240";
+        fieldsInitialPrices[25] = "200";
+        fieldsInitialPrices[26] = "260";
+        fieldsInitialPrices[27] = "260";
+        fieldsInitialPrices[28] = "150";
+        fieldsInitialPrices[29] = "280";
+        fieldsInitialPrices[30] = "Go To Jail";
+        fieldsInitialPrices[31] = "300";
+        fieldsInitialPrices[32] = "300";
+        fieldsInitialPrices[33] = "Community Chest";
+        fieldsInitialPrices[34] = "320";
+        fieldsInitialPrices[35] = "200";
+        fieldsInitialPrices[36] = "Chance";
+        fieldsInitialPrices[37] = "350";
+        fieldsInitialPrices[38] = "Luxury Tax";
+        fieldsInitialPrices[39] = "400";
 
-    //HOW WE BUILD HOUSES!!!!
-
-
+        return fieldsInitialPrices;
+    }
 }
 
 

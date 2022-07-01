@@ -3,11 +3,24 @@ import java.util.Scanner;
 public class MethodsPlayer {
     public static int checkPlayerCount() {
         Scanner sc = new Scanner(System.in);
-        int playerCount = sc.nextByte();
-        if (playerCount < 1 || playerCount > 4) {
-            System.out.println("Players range can be from 1 to 4");
+        String x = sc.next();
+        try
+        {
+            Integer.parseInt(x);
+            if (Integer.parseInt(x) < 2 || Integer.parseInt(x) > 4) {
+                System.out.println("Players range can be from 2 to 4");
+                return Main.startMenu();
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Invalid choice! Enter Digit from 2 to 4");
+            System.out.println();
             return Main.startMenu();
         }
+
+        int playerCount=Integer.parseInt(x);
+
         return playerCount;
     }
 
@@ -24,7 +37,7 @@ public class MethodsPlayer {
     public static int[] initializePlayersMoney(int n) {
         int[] playersMoney = new int[n];
         for (int i = 0; i < n; i++) {
-            playersMoney[i] = 1000;
+            playersMoney[i] = 500;
         }
         return playersMoney;
     }
@@ -35,14 +48,6 @@ public class MethodsPlayer {
             playersPosition[i] = 0;
         }
         return playersPosition;
-    }
-
-    public static boolean[] initializePlayersInJail(int n) {
-        boolean[] playersInJail = new boolean[n];
-        for (int i = 0; i < n; i++) {
-            playersInJail[i] = false;
-        }
-        return playersInJail;
     }
 
     public static int[] initializePlayersJailTimeCounter(int n) {
@@ -62,12 +67,5 @@ public class MethodsPlayer {
         } else {
             playersPosition[iteration] += diceSum;
         }
-    }
-
-    public static void promptEnterKey() {
-        System.out.println();
-        System.out.println("Row Dices(Press Enter)");
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
     }
 }

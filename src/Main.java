@@ -16,9 +16,9 @@ public class Main {
         String[] players = MethodsPlayer.initializePlayersNames(playerCount);
         int[] money = MethodsPlayer.initializePlayersMoney(playerCount);
         int[] position = MethodsPlayer.initializePlayersPosition(playerCount);
-        boolean[] playersInJail = MethodsPlayer.initializePlayersInJail(playerCount);
         int[] playersJailTimeCounter = MethodsPlayer.initializePlayersJailTimeCounter(playerCount);
+        String[] fieldsInitialPrices=MethodsField.fieldsInitialPrices();
 
-        PlayGame.startGame(fields, communityChest, chanceCards, players, money, position, playersInJail, playersJailTimeCounter);
+        PlayGame.startGame(fields, communityChest, chanceCards, players, money, position, playersJailTimeCounter,fieldsInitialPrices);
     }
 }
