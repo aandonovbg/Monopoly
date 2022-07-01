@@ -36,14 +36,12 @@ public class Dice {
                     PlayGame.isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersInJail, playersJailTimeCounter, iteration);
 
                     if (playersMoney[iteration] == 0) {
-                        PlayGame.deletePlayer(playersName, playersMoney, playersPosition, playersInJail, iteration);
+                        PlayGame.deletePlayer(playersName, playersMoney, playersPosition, iteration);
                     }
                 } else {
                     System.out.println(playersName[iteration] + " has " + playersJailTimeCounter[iteration] + " turn left in Jail ");
                 }
             }
-
-
         }
     }
 }

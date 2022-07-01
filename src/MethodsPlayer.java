@@ -53,55 +53,20 @@ public class MethodsPlayer {
         return playersJailTimeCounter;
     }
 
-
-    public static String getPlayerName(String[] playersNames, int iteration) {
-        return playersNames[iteration];
-    }
-
-    public static void setPlayerName(String[] playersNames, int iteration, String name) {
-        playersNames[iteration] = name;
-    }
-
-    public static int getPlayerMoney(int[] playersMoney, int iteration) {
-        return playersMoney[iteration];
-    }
-
-    public static void setPlayerMoney(int[] playersMoney, int n, int money) {
-        playersMoney[n] = money;
-    }
-
-    public static int getPlayerPosition(int[] playersPosition, int iteration) {
-        return playersPosition[iteration];
-    }
-
     public static void setPlayerPosition(int[] playersPosition, int[] playersMoney, int iteration, int diceSum) {
-        if (playersPosition[iteration]+diceSum > 39) {
+        if (playersPosition[iteration] + diceSum > 39) {
             playersMoney[iteration] += 200;
             System.out.println("You passed \"GO\" and collect 200$");
-            playersPosition[iteration] = (playersPosition[iteration]+diceSum) - 39;
-        }else {
+            System.out.println("You have " + playersMoney[iteration] + " left in Bank Account.");
+            playersPosition[iteration] = (playersPosition[iteration] + diceSum) - 39;
+        } else {
             playersPosition[iteration] += diceSum;
         }
     }
 
-    public static boolean getPlayerInJail(int n, boolean[] playersInJail) {
-        return playersInJail[n];
-    }
-
-    public static void setPlayerInJail(int n, boolean[] playersInJail, boolean isInJail) {
-        playersInJail[n] = isInJail;
-    }
-
-    public static int getPlayerJailTimeCounter(int n, int[] playersJailTimeCounter) {
-        return playersJailTimeCounter[n];
-    }
-
-    public static void setPlayerJailTimeCounter(int n, int[] playersJailTimeCounter, int counter) {
-        playersJailTimeCounter[n] = counter;
-    }
-    public static void promptEnterKey(){
+    public static void promptEnterKey() {
         System.out.println();
-        System.out.println("Row Dices");
+        System.out.println("Row Dices(Press Enter)");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }

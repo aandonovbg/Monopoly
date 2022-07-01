@@ -1,5 +1,5 @@
-import java.util.Arrays;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MethodsField {
     public static String[][] initializeFieldsNamesAndOwners() {
@@ -7,7 +7,9 @@ public class MethodsField {
         //[1][0]=fieldsOwners
         //[2][0]=fieldsPrice
         //[3][0]=fieldsRent
-        String[][] fieldsNamesAndOwners = new String[4][40];
+        //[4][0]=fieldColor
+        //[5][0]=houseCount
+        String[][] fieldsNamesAndOwners = new String[6][40];
 
         fieldsNamesAndOwners[0][0] = "GO";
         fieldsNamesAndOwners[0][1] = "Mediterranean Avenue";
@@ -51,9 +53,9 @@ public class MethodsField {
         fieldsNamesAndOwners[0][39] = "Boardwalk";
 
         fieldsNamesAndOwners[1][0] = "GO";
-        fieldsNamesAndOwners[1][1] = "";
+        fieldsNamesAndOwners[1][1] = "Todor";
         fieldsNamesAndOwners[1][2] = "Community Chest";
-        fieldsNamesAndOwners[1][3] = "";
+        fieldsNamesAndOwners[1][3] = "Todor";
         fieldsNamesAndOwners[1][4] = "Income Tax";
         fieldsNamesAndOwners[1][5] = "";
         fieldsNamesAndOwners[1][6] = "";
@@ -174,6 +176,89 @@ public class MethodsField {
         fieldsNamesAndOwners[3][38] = "Luxury Tax";
         fieldsNamesAndOwners[3][39] = "50";
 
+
+        fieldsNamesAndOwners[4][0] = "GO";
+        fieldsNamesAndOwners[4][1] = "Brown";
+        fieldsNamesAndOwners[4][2] = "Community Chest";
+        fieldsNamesAndOwners[4][3] = "Brown";
+        fieldsNamesAndOwners[4][4] = "Income Tax";
+        fieldsNamesAndOwners[4][5] = "";
+        fieldsNamesAndOwners[4][6] = "Light Blue";
+        fieldsNamesAndOwners[4][7] = "Chance";
+        fieldsNamesAndOwners[4][8] = "Light Blue";
+        fieldsNamesAndOwners[4][9] = "Light Blue";
+        fieldsNamesAndOwners[4][10] = "Jail";
+        fieldsNamesAndOwners[4][11] = "Pink";
+        fieldsNamesAndOwners[4][12] = "";
+        fieldsNamesAndOwners[4][13] = "Pink";
+        fieldsNamesAndOwners[4][14] = "Pink";
+        fieldsNamesAndOwners[4][15] = "";
+        fieldsNamesAndOwners[4][16] = "Orange";
+        fieldsNamesAndOwners[4][17] = "Community Chest";
+        fieldsNamesAndOwners[4][18] = "Orange";
+        fieldsNamesAndOwners[4][19] = "Orange";
+        fieldsNamesAndOwners[4][20] = "Free Parking";
+        fieldsNamesAndOwners[4][21] = "Red";
+        fieldsNamesAndOwners[4][22] = "Chance";
+        fieldsNamesAndOwners[4][23] = "Red";
+        fieldsNamesAndOwners[4][24] = "Red";
+        fieldsNamesAndOwners[4][25] = "";
+        fieldsNamesAndOwners[4][26] = "Yellow";
+        fieldsNamesAndOwners[4][27] = "Yellow";
+        fieldsNamesAndOwners[4][28] = "";
+        fieldsNamesAndOwners[4][29] = "Yellow";
+        fieldsNamesAndOwners[4][30] = "Go To Jail";
+        fieldsNamesAndOwners[4][31] = "Green";
+        fieldsNamesAndOwners[4][32] = "Green";
+        fieldsNamesAndOwners[4][33] = "Community Chest";
+        fieldsNamesAndOwners[4][34] = "Green";
+        fieldsNamesAndOwners[4][35] = "";
+        fieldsNamesAndOwners[4][36] = "Chance";
+        fieldsNamesAndOwners[4][37] = "Blue";
+        fieldsNamesAndOwners[4][38] = "Luxury Tax";
+        fieldsNamesAndOwners[4][39] = "Blue";
+
+        fieldsNamesAndOwners[5][0] = "GO";
+        fieldsNamesAndOwners[5][1] = "0";
+        fieldsNamesAndOwners[5][2] = "Community Chest";
+        fieldsNamesAndOwners[5][3] = "0";
+        fieldsNamesAndOwners[5][4] = "Income Tax";
+        fieldsNamesAndOwners[5][5] = "0";
+        fieldsNamesAndOwners[5][6] = "0";
+        fieldsNamesAndOwners[5][7] = "Chance";
+        fieldsNamesAndOwners[5][8] = "0";
+        fieldsNamesAndOwners[5][9] = "0";
+        fieldsNamesAndOwners[5][10] = "Jail";
+        fieldsNamesAndOwners[5][11] = "0";
+        fieldsNamesAndOwners[5][12] = "0";
+        fieldsNamesAndOwners[5][13] = "0";
+        fieldsNamesAndOwners[5][14] = "0";
+        fieldsNamesAndOwners[5][15] = "0";
+        fieldsNamesAndOwners[5][16] = "0";
+        fieldsNamesAndOwners[5][17] = "Community Chest";
+        fieldsNamesAndOwners[5][18] = "0";
+        fieldsNamesAndOwners[5][19] = "0";
+        fieldsNamesAndOwners[5][20] = "Free Parking";
+        fieldsNamesAndOwners[5][21] = "0";
+        fieldsNamesAndOwners[5][22] = "Chance";
+        fieldsNamesAndOwners[5][23] = "0";
+        fieldsNamesAndOwners[5][24] = "0";
+        fieldsNamesAndOwners[5][25] = "0";
+        fieldsNamesAndOwners[5][26] = "0";
+        fieldsNamesAndOwners[5][27] = "0";
+        fieldsNamesAndOwners[5][28] = "0";
+        fieldsNamesAndOwners[5][29] = "0";
+        fieldsNamesAndOwners[5][30] = "Go To Jail";
+        fieldsNamesAndOwners[5][31] = "0";
+        fieldsNamesAndOwners[5][32] = "0";
+        fieldsNamesAndOwners[5][33] = "Community Chest";
+        fieldsNamesAndOwners[5][34] = "0";
+        fieldsNamesAndOwners[5][35] = "0";
+        fieldsNamesAndOwners[5][36] = "Chance";
+        fieldsNamesAndOwners[5][37] = "0";
+        fieldsNamesAndOwners[5][38] = "Luxury Tax";
+        fieldsNamesAndOwners[5][39] = "0";
+
         return fieldsNamesAndOwners;
     }
 
@@ -225,7 +310,6 @@ public class MethodsField {
         communityChest[1][4] = "Go to Jail. Go directly to jail, do not pass Go, do not collect $200";
         communityChest[1][5] = "100";
         communityChest[1][6] = "20";
-        //communityChest[1][7] special one must check it !!!!!!!
         communityChest[1][7] = "It is your birthday. Collect $10 from every player";
         communityChest[1][8] = "100";
         communityChest[1][9] = "-100";
@@ -237,58 +321,10 @@ public class MethodsField {
         return communityChest;
     }
 
-    public static void isFieldSpecial(String[][] fields, String[][] communityChest, String[] playersName, int[] playersMoney, int[] playersPosition, int iteration, int diceSum) {
-        if (fields[1][playersPosition[iteration]].equals("Community Chest") ||
-                fields[1][playersPosition[iteration]].equals("Income Tax") ||
-                fields[1][playersPosition[iteration]].equals("Go To Jail") ||
-                fields[1][playersPosition[iteration]].equals("Luxury Tax") ||
-                fields[1][playersPosition[iteration]].equals("Free Parking")) {
-            switch (fields[1][playersPosition[iteration]]) {
-                case "Community Chest" -> {
-                    Random rand = new Random();
-                    int index = rand.nextInt(14);
-                    if (index == 8) {     //check if index is equal to [0][7]
-                        System.out.println(communityChest[0][index - 1]);
-                        for (int i = 0; i < playersMoney.length; i++) {
-                            playersMoney[i] -= 10;      //deduct 10$ of every player
-                        }
-                        playersMoney[iteration] += playersMoney.length * 10; //add 10$ from every player to current player
-                    } else {
-                        System.out.println(communityChest[0][index - 1]);
-                        playersMoney[iteration] += Integer.parseInt(communityChest[1][index - 1]);
-                    }
-                }
-                case "Income Tax" -> {
-                    System.out.println("Pay 200$ Income TAX :)");
-                    playersMoney[iteration] -= 200;
-                }
-                case "Go To Jail" -> {
-                    System.out.println("Go straight to Jail");
-                    playersPosition[iteration] = 10;
-                }
-                case "Luxury Tax" -> {
-                    System.out.println("Pay 100$ Luxury TAX :)");
-                    playersMoney[iteration] -= 100;
-                }
-            }
-        }
 
-    }
+    //HOW WE BUILD HOUSES!!!!
 
-    public static void setFieldOwner(String[][] fields, int iteration, String name) {
-        fields[1][iteration] = name;
-    }
 
-   /*public static String getFieldOwner(String[][] fields, int[] playersPosition, int iteration, int diceSum) {
-        String fieldOwner = fields[1][playersPosition[iteration] + diceSum];
-        return fieldOwner;
-   }*/
-
-    public static int getFieldPrice(String[][] fields, int iteration) {
-        return Integer.parseInt(fields[2][iteration]);
-    }
-
-    public static int getFieldRent(String[][] fields, int[] playersPosition, int iteration, int diceSum) {
-        return Integer.parseInt(fields[3][(playersPosition[iteration] + diceSum)]);
-    }
 }
+
+
