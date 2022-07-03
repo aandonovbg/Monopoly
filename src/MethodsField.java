@@ -57,41 +57,41 @@ public class MethodsField {
         fieldsNamesAndOwners[1][2] = "Community Chest";
         fieldsNamesAndOwners[1][3] = "Todor";
         fieldsNamesAndOwners[1][4] = "Income Tax";
-        fieldsNamesAndOwners[1][5] = "";
-        fieldsNamesAndOwners[1][6] = "";
+        fieldsNamesAndOwners[1][5] = "Todor";
+        fieldsNamesAndOwners[1][6] = "Todor";
         fieldsNamesAndOwners[1][7] = "Chance";
-        fieldsNamesAndOwners[1][8] = "";
-        fieldsNamesAndOwners[1][9] = "";
+        fieldsNamesAndOwners[1][8] = "Todor";
+        fieldsNamesAndOwners[1][9] = "Todor";
         fieldsNamesAndOwners[1][10] = "Jail";
-        fieldsNamesAndOwners[1][11] = "";
-        fieldsNamesAndOwners[1][12] = "";
-        fieldsNamesAndOwners[1][13] = "";
-        fieldsNamesAndOwners[1][14] = "";
-        fieldsNamesAndOwners[1][15] = "";
-        fieldsNamesAndOwners[1][16] = "";
+        fieldsNamesAndOwners[1][11] = "Todor";
+        fieldsNamesAndOwners[1][12] = "Todor";
+        fieldsNamesAndOwners[1][13] = "Todor";
+        fieldsNamesAndOwners[1][14] = "Todor";
+        fieldsNamesAndOwners[1][15] = "Todor";
+        fieldsNamesAndOwners[1][16] = "Todor";
         fieldsNamesAndOwners[1][17] = "Community Chest";
-        fieldsNamesAndOwners[1][18] = "";
-        fieldsNamesAndOwners[1][19] = "";
+        fieldsNamesAndOwners[1][18] = "Todor";
+        fieldsNamesAndOwners[1][19] = "Todor";
         fieldsNamesAndOwners[1][20] = "Free Parking";
-        fieldsNamesAndOwners[1][21] = "";
+        fieldsNamesAndOwners[1][21] = "Todor";
         fieldsNamesAndOwners[1][22] = "Chance";
-        fieldsNamesAndOwners[1][23] = "";
-        fieldsNamesAndOwners[1][24] = "";
-        fieldsNamesAndOwners[1][25] = "";
-        fieldsNamesAndOwners[1][26] = "";
-        fieldsNamesAndOwners[1][27] = "";
-        fieldsNamesAndOwners[1][28] = "";
-        fieldsNamesAndOwners[1][29] = "";
+        fieldsNamesAndOwners[1][23] = "Todor";
+        fieldsNamesAndOwners[1][24] = "Todor";
+        fieldsNamesAndOwners[1][25] = "Todor";
+        fieldsNamesAndOwners[1][26] = "Todor";
+        fieldsNamesAndOwners[1][27] = "Todor";
+        fieldsNamesAndOwners[1][28] = "Todor";
+        fieldsNamesAndOwners[1][29] = "Todor";
         fieldsNamesAndOwners[1][30] = "Go To Jail";
-        fieldsNamesAndOwners[1][31] = "";
-        fieldsNamesAndOwners[1][32] = "";
+        fieldsNamesAndOwners[1][31] = "Todor";
+        fieldsNamesAndOwners[1][32] = "Todor";
         fieldsNamesAndOwners[1][33] = "Community Chest";
-        fieldsNamesAndOwners[1][34] = "";
-        fieldsNamesAndOwners[1][35] = "";
+        fieldsNamesAndOwners[1][34] = "Todor";
+        fieldsNamesAndOwners[1][35] = "Todor";
         fieldsNamesAndOwners[1][36] = "Chance";
-        fieldsNamesAndOwners[1][37] = "";
+        fieldsNamesAndOwners[1][37] = "Todor";
         fieldsNamesAndOwners[1][38] = "Luxury Tax";
-        fieldsNamesAndOwners[1][39] = "";
+        fieldsNamesAndOwners[1][39] = "Todor";
 
         fieldsNamesAndOwners[2][0] = "";
         fieldsNamesAndOwners[2][1] = "60";
@@ -219,25 +219,25 @@ public class MethodsField {
         fieldsNamesAndOwners[4][39] = "Blue";
 
         fieldsNamesAndOwners[5][0] = "GO";
-        fieldsNamesAndOwners[5][1] = "0";
+        fieldsNamesAndOwners[5][1] = "4";
         fieldsNamesAndOwners[5][2] = "Community Chest";
-        fieldsNamesAndOwners[5][3] = "0";
+        fieldsNamesAndOwners[5][3] = "4";
         fieldsNamesAndOwners[5][4] = "Income Tax";
-        fieldsNamesAndOwners[5][5] = "0";
-        fieldsNamesAndOwners[5][6] = "0";
+        fieldsNamesAndOwners[5][5] = "4";
+        fieldsNamesAndOwners[5][6] = "4";
         fieldsNamesAndOwners[5][7] = "Chance";
-        fieldsNamesAndOwners[5][8] = "0";
-        fieldsNamesAndOwners[5][9] = "0";
+        fieldsNamesAndOwners[5][8] = "4";
+        fieldsNamesAndOwners[5][9] = "4";
         fieldsNamesAndOwners[5][10] = "Jail";
-        fieldsNamesAndOwners[5][11] = "0";
-        fieldsNamesAndOwners[5][12] = "0";
-        fieldsNamesAndOwners[5][13] = "0";
-        fieldsNamesAndOwners[5][14] = "0";
-        fieldsNamesAndOwners[5][15] = "0";
-        fieldsNamesAndOwners[5][16] = "0";
+        fieldsNamesAndOwners[5][11] = "4";
+        fieldsNamesAndOwners[5][12] = "4";
+        fieldsNamesAndOwners[5][13] = "4";
+        fieldsNamesAndOwners[5][14] = "4";
+        fieldsNamesAndOwners[5][15] = "4";
+        fieldsNamesAndOwners[5][16] = "4";
         fieldsNamesAndOwners[5][17] = "Community Chest";
-        fieldsNamesAndOwners[5][18] = "0";
-        fieldsNamesAndOwners[5][19] = "0";
+        fieldsNamesAndOwners[5][18] = "4";
+        fieldsNamesAndOwners[5][19] = "4";
         fieldsNamesAndOwners[5][20] = "Free Parking";
         fieldsNamesAndOwners[5][21] = "0";
         fieldsNamesAndOwners[5][22] = "Chance";
@@ -261,6 +261,8 @@ public class MethodsField {
 
         return fieldsNamesAndOwners;
     }
+
+
 
     public static String[] chanceCards() {
         //[0][0]=cardsText
@@ -321,10 +323,51 @@ public class MethodsField {
         return communityChest;
     }
 
+    public static String[] fieldsInitialPrices() {
+        String [] fieldsInitialPrices=new String[40];
+        fieldsInitialPrices[0] = "";
+        fieldsInitialPrices[1] = "60";
+        fieldsInitialPrices[2] = "Community Chest";
+        fieldsInitialPrices[3] = "60";
+        fieldsInitialPrices[4] = "Income Tax";
+        fieldsInitialPrices[5] = "200";
+        fieldsInitialPrices[6] = "100";
+        fieldsInitialPrices[7] = "Chance";
+        fieldsInitialPrices[8] = "100";
+        fieldsInitialPrices[9] = "120";
+        fieldsInitialPrices[10] = "Jail";
+        fieldsInitialPrices[11] = "140";
+        fieldsInitialPrices[12] = "150";
+        fieldsInitialPrices[13] = "140";
+        fieldsInitialPrices[14] = "160";
+        fieldsInitialPrices[15] = "200";
+        fieldsInitialPrices[16] = "180";
+        fieldsInitialPrices[17] = "Community Chest";
+        fieldsInitialPrices[18] = "180";
+        fieldsInitialPrices[19] = "200";
+        fieldsInitialPrices[20] = "";
+        fieldsInitialPrices[21] = "220";
+        fieldsInitialPrices[22] = "Chance";
+        fieldsInitialPrices[23] = "220";
+        fieldsInitialPrices[24] = "240";
+        fieldsInitialPrices[25] = "200";
+        fieldsInitialPrices[26] = "260";
+        fieldsInitialPrices[27] = "260";
+        fieldsInitialPrices[28] = "150";
+        fieldsInitialPrices[29] = "280";
+        fieldsInitialPrices[30] = "Go To Jail";
+        fieldsInitialPrices[31] = "300";
+        fieldsInitialPrices[32] = "300";
+        fieldsInitialPrices[33] = "Community Chest";
+        fieldsInitialPrices[34] = "320";
+        fieldsInitialPrices[35] = "200";
+        fieldsInitialPrices[36] = "Chance";
+        fieldsInitialPrices[37] = "350";
+        fieldsInitialPrices[38] = "Luxury Tax";
+        fieldsInitialPrices[39] = "400";
 
-    //HOW WE BUILD HOUSES!!!!
-
-
+        return fieldsInitialPrices;
+    }
 }
 
 
