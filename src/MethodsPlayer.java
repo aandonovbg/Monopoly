@@ -19,9 +19,7 @@ public class MethodsPlayer {
             return Main.startMenu();
         }
 
-        int playerCount=Integer.parseInt(x);
-
-        return playerCount;
+        return Integer.parseInt(x);
     }
 
     public static String[] initializePlayersNames(int n) {
@@ -37,7 +35,7 @@ public class MethodsPlayer {
     public static int[] initializePlayersMoney(int n) {
         int[] playersMoney = new int[n];
         for (int i = 0; i < n; i++) {
-            playersMoney[i] = 500;
+            playersMoney[i] = 10;
         }
         return playersMoney;
     }
@@ -67,5 +65,12 @@ public class MethodsPlayer {
         } else {
             playersPosition[iteration] += diceSum;
         }
+    }
+    public static boolean[] isPlayerActive(String[]playersName){
+        boolean [] isPlayerActive=new boolean[playersName.length];
+        for (int i = 0; i < isPlayerActive.length; i++) {
+            isPlayerActive[i]=true;
+        }
+        return isPlayerActive;
     }
 }
