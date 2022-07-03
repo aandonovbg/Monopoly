@@ -62,13 +62,8 @@ public class Houses {
             String q = sc.next().toLowerCase();
 
             switch (q) {
-                case "yes" -> {
-                    buildHouses(buildHouseEnabled, fields, playersName, playersMoney, iteration);
-                }
-                case "no" -> {
-
-                    System.out.println();
-                }
+                case "yes" -> buildHouses(buildHouseEnabled, fields, playersName, playersMoney, iteration);
+                case "no" -> System.out.println();
                 default -> {
                     System.out.println("Invalid choice!!!\nYes or No");
                     checkIfNeighborHoodIsEnabled(buildHouseEnabled, fields, playersName, playersMoney, iteration);
@@ -77,13 +72,6 @@ public class Houses {
         }
     }
 
-    public static String checkChoiceOfNeighborhood(ArrayList<String> buildHouseEnabled, String[][] fields, String[] playersName, int[] playersMoney, int iteration,Object obj){
-        if(obj instanceof Integer){
-            System.out.println("Invalid choice. Please choose the name of the neighborhood");
-            buildHouses(buildHouseEnabled,fields,playersName,playersMoney,iteration);
-        }
-        return String.valueOf(obj);
-    }
     public static void buildHouses(ArrayList<String> buildHouseEnabled, String[][] fields, String[] playersName, int[] playersMoney, int iteration) {
         Scanner sc = new Scanner(System.in);
         int houseCounter = 0;

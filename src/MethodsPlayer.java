@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MethodsPlayer {
@@ -68,9 +69,7 @@ public class MethodsPlayer {
     }
     public static boolean[] isPlayerActive(String[]playersName){
         boolean [] isPlayerActive=new boolean[playersName.length];
-        for (int i = 0; i < isPlayerActive.length; i++) {
-            isPlayerActive[i]=true;
-        }
+        Arrays.fill(isPlayerActive, true);
         return isPlayerActive;
     }
 }

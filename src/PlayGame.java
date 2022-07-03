@@ -73,21 +73,6 @@ public class PlayGame {
 
                 return;
             }
-    /*   int sumOfActivePlayers=0;
-            for (int j = 0; j < isPlayerActive.length; j++) {
-                if (isPlayerActive[j]){
-                    sumOfActivePlayers++;
-                }
-            }
-            if (sumOfActivePlayers==1){
-                for (int j = 0; j < isPlayerActive.length; j++) {
-                    if (isPlayerActive[j]){
-                        System.out.println("And the WINNER is " + playersName[j].toUpperCase());
-                    }
-                }
-                return;
-            }
-*/
         }
 
         //checking if there is only one player left
