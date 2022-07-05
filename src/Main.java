@@ -6,7 +6,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Monopoly :)");
+        System.out.println("        Welcome to Monopoly :)");
         System.out.print("How many Players are going to play->");
         int playerCount = MethodsPlayer.checkPlayerCount();
 
