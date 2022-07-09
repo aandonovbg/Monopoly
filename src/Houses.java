@@ -46,7 +46,7 @@ public class Houses {
             buildHouseEnabled.add("Green");
             System.out.println(playersName[iteration] + " can build houses on \"Green\" Neighborhood");
         }
-        if (fields[1][37].equals(playersName[iteration]) && fields[1][38].equals(playersName[iteration])) {
+        if (fields[1][37].equals(playersName[iteration]) && fields[1][39].equals(playersName[iteration])) {
             buildHouseEnabled.add("Blue");
             System.out.println(playersName[iteration] + " can build houses on \"Blue\" Neighborhood");
         }
@@ -694,7 +694,7 @@ public class Houses {
                 }
                 default -> {
                     System.out.println("Invalid choice!!!\nChoose a neighborhood from the list");
-                    buildHouses(buildHouseEnabled,fields,playersName,playersMoney,iteration);
+                    buildHouses(buildHouseEnabled, fields, playersName, playersMoney, iteration);
                 }
             }
         } else {
