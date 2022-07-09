@@ -9,20 +9,22 @@ public class PlayGame {
             if (!isPlayerActive[i]) {
                 continue;
             } else {
-                // checking if current Player is not the only one left active
+                int pairCount=0;
+                //count the Players
                 int sumOfActivePlayers = 0;
                 for (int j = 0; j < isPlayerActive.length; j++) {
                     if (isPlayerActive[j]) {
                         sumOfActivePlayers++;
                     }
                 }
+                // checking if current Player is not the only one left active
                 if (sumOfActivePlayers == 1) {
                     return;
                 } else {
-                    //checks if user can build houses
+                    //checks if Player can build houses
                     Houses.checkIfNeighborHoodIsEnabled(Houses.createdNeighborhoods(fields, playersName, i), fields, playersName, playersMoney, i);
                     //checks for JailTime
-                    if (playersJailTimeCounter[i] > 0) {
+                    if (playersJailTimeCounter[i] > 0||pairCount==3) {
                         Dice.promptEnterKey();
                         int dice1 = Dice.throwDice();
                         int dice2 = Dice.throwDice();
@@ -34,9 +36,9 @@ public class PlayGame {
 
                             MethodsPlayer.setPlayerPosition(playersPosition, playersMoney, i, dice1 + dice2);
                             System.out.println(playersName[i] + "'s position is " + playersPosition[i] + " -\"" + fields[0][playersPosition[i]] + "\"");
-                            isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, i);
+                            isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, i,dice1+dice2);
 
-                            if (playersMoney[i] == 0) {
+                            if (playersMoney[i] < 0) {
                                 deletePlayer(fields, playersName, fieldsInitialPrices, isPlayerActive, i);
                             }
                         } else {
@@ -58,13 +60,14 @@ public class PlayGame {
 
                         if (dice1 == dice2) {
                             System.out.println(playersName[i] + " threw PAIR!!!");
+                            pairCount++;
                         }
 
                         MethodsPlayer.setPlayerPosition(playersPosition, playersMoney, i, dice1 + dice2);//player's NEW position is applied to arr index
                         System.out.println(playersName[i] + "'s position is " + playersPosition[i] + " -\"" + fields[0][playersPosition[i]] + "\"");
-                        isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, i);
+                        isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, i,dice1+dice2);
 
-                        Dice.checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, i, dice1, dice2);
+                        Dice.checkForPair(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, i, dice1, dice2,pairCount);
                     }
                 }
             }
@@ -75,13 +78,14 @@ public class PlayGame {
             }
         }
 
-        //checking if there is only one player left
+        //count the Players
         int sumOfActivePlayers=0;
         for (int j = 0; j < isPlayerActive.length; j++) {
             if (isPlayerActive[j]){
                 sumOfActivePlayers++;
             }
         }
+        //checking if there is only one player left
         if (sumOfActivePlayers==1){
             for (int j = 0; j < isPlayerActive.length; j++) {
                 if (isPlayerActive[j]){
@@ -98,13 +102,14 @@ public class PlayGame {
         System.out.println(playersName[iteration] + " you have NO more money.\nYou are broke!");
         System.out.println("END OF GAME FOR YOU!!!");
 
-        //suspending players turn
+        //suspending player's turn
         isPlayerActive[iteration] = false;
 
-        //restoring initial price of the fields owned by the player
+        //restoring initial price and house count of the fields owned by the player
         for (int i = 0; i < fields.length; i++) {
             if (playersName[iteration].equals(fields[1][i])) {
                 fields[2][i] = fieldsInitialPrices[i];
+                fields[5][i]="0";
             }
         }
 
@@ -129,9 +134,11 @@ public class PlayGame {
                 }
             }
         }
+
+
     }
 
-    public static void isFieldSpecial(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, int[] playersJailTimeCounter, String[] fieldsInitialPrices, boolean[] isPlayerActive, int iteration) {
+    public static void isFieldSpecial(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, int[] playersJailTimeCounter, String[] fieldsInitialPrices, boolean[] isPlayerActive, int iteration,int diceSum) {
         if (fields[1][playersPosition[iteration]].equals("Community Chest") ||
                 fields[1][playersPosition[iteration]].equals("Income Tax") ||
                 fields[1][playersPosition[iteration]].equals("Go To Jail") ||
@@ -147,7 +154,7 @@ public class PlayGame {
                     switch (chance) {
                         case 0 -> {
                             playersPosition[iteration] = 39;
-                            isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                            isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                         }
                         case 1 -> {
                             playersPosition[iteration] = 0;
@@ -160,22 +167,22 @@ public class PlayGame {
                                 playersPosition[iteration] = 24;
                                 playersMoney[iteration] += 200;
                                 System.out.println(playersName[iteration] + " passed through \"GO\" and collects $200.\"");
-                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             } else {
                                 playersPosition[iteration] = 24;
-                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             }
                         }
                         case 3 -> {
                             if (playersPosition[iteration] == 7) {
                                 playersPosition[iteration] = 11;
                                 System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");
-                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             } else {
                                 playersPosition[iteration] = 11;
                                 playersMoney[iteration] += 200;
                                 System.out.println(playersName[iteration] + " passed through \"GO\" and collects $200.\"");
-                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             }
                         }
                         case 4 -> {
@@ -183,26 +190,26 @@ public class PlayGame {
                                 playersPosition[iteration] = 15;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
                                 System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             } else if (playersPosition[iteration] == 22) {
                                 playersPosition[iteration] = 25;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
-                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             } else if (playersPosition[iteration] == 36) {
                                 playersPosition[iteration] = 5;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
-                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                                isRailRoadFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             }
                         }
                         case 5 -> {
                             if (playersPosition[iteration] == 7) {
                                 playersPosition[iteration] = 12;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
-                                isUtilityFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration, playersPosition[iteration]);
+                                isUtilityFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration, diceSum);
                             } else if (playersPosition[iteration] == 22) {
                                 playersPosition[iteration] = 28;
                                 System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
-                                isUtilityFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration, playersPosition[iteration]);
+                                isUtilityFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration, diceSum);
                             }
                         }
                         case 6 -> {
@@ -212,7 +219,7 @@ public class PlayGame {
                         case 7 -> {
                             playersPosition[iteration] -= 3;
                             System.out.println(playersName[iteration] + " was moved to " + fields[0][playersPosition[iteration]]);
-                            isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                            isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
                             if (playersMoney[iteration] < 0) {
                                 deletePlayer(fields, playersName, fieldsInitialPrices, isPlayerActive, iteration);
@@ -238,7 +245,7 @@ public class PlayGame {
                                 playersMoney[iteration] += 200;
                                 System.out.println(playersName[iteration] + " passed through \"GO\" and collects $200.\"");
                                 System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                                isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                             } else {
                                 playersPosition[iteration] = 5;
                             }
@@ -251,10 +258,9 @@ public class PlayGame {
                                 }
                                 playersMoney[iteration] -= playersMoney.length * 50;
                                 System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-                                if (playersMoney[iteration] < 0) {
-                                    deletePlayer(fields, playersName, fieldsInitialPrices, isPlayerActive, iteration);
+                            } else if (playersMoney[iteration] < 0) {
+                                deletePlayer(fields, playersName, fieldsInitialPrices, isPlayerActive, iteration);
 
-                                }
                             }
                         }
                         case 12 -> {
@@ -300,10 +306,15 @@ public class PlayGame {
                 case "Income Tax" -> {
                     System.out.println("Pay 200$ Income TAX :)");
                     playersMoney[iteration] -= 200;
-                    System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
-                    if (playersMoney[iteration] < 0) {
-                        deletePlayer(fields, playersName, fieldsInitialPrices, isPlayerActive, iteration);
+                    if (playersMoney[iteration]<0){
+                        System.out.println(playersName[iteration]+"you have "+(playersMoney[iteration]+200)+" in your Bank account");
+                        System.out.println("You don't have enough to pay your Tax!");
+                    }else {
+                        System.out.println(playersName[iteration] + " has " + playersMoney[iteration] + " left in Bank Account.");
+                    }
 
+                  if (playersMoney[iteration] < 0) {
+                        deletePlayer(fields, playersName, fieldsInitialPrices, isPlayerActive, iteration);
                     }
                 }
                 case "Go To Jail" -> {
@@ -327,7 +338,7 @@ public class PlayGame {
         }
     }
 
-    public static void isFieldFree(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, int[] playersJailTimeCounter, String[] fieldsInitialPrices, boolean[] isPlayerActive, int iteration) {
+    public static void isFieldFree(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, int[] playersJailTimeCounter, String[] fieldsInitialPrices, boolean[] isPlayerActive, int iteration,int diceSum) {
         Scanner sc = new Scanner(System.in);
         if (fields[1][playersPosition[iteration]].equals("")) { //if the field is free/empty
             System.out.println("Property \"" + fields[0][playersPosition[iteration]] + "\" is free.");
@@ -352,7 +363,7 @@ public class PlayGame {
                     break;
                 default:
                     System.out.println("Invalid choice!!!");
-                    isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                    isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                     break;
             }
             //if the field have Owner
@@ -362,7 +373,7 @@ public class PlayGame {
             if (fields[1][playersPosition[iteration]].equals("Chance") || fields[1][playersPosition[iteration]].equals("Community Chest") ||
                     fields[1][playersPosition[iteration]].equals("Income Tax") || fields[1][playersPosition[iteration]].equals("Jail") ||
                     fields[1][playersPosition[iteration]].equals("Go To Jail") || fields[1][playersPosition[iteration]].equals("Luxury Tax") || fields[1][playersPosition[iteration]].equals("Free Parking")) {
-                isFieldSpecial(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                isFieldSpecial(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
             }
             //check if Player is the owner of the field
             else if (fields[1][playersPosition[iteration]].equals(playersName[iteration])) {
@@ -385,12 +396,14 @@ public class PlayGame {
             }
             //if Player does NOT have enough money
             else if (playersMoney[iteration] < Integer.parseInt(fields[3][playersPosition[iteration]])) {
+                System.out.println(playersName[iteration] + " you have " + playersMoney[iteration] + " left in your Bank Account.");
+                System.out.println(playersName[iteration] + " you must pay "+Integer.parseInt(fields[3][playersPosition[iteration]]));
                 deletePlayer(fields, playersName, fieldsInitialPrices, isPlayerActive, iteration);
             }
         }
     }
 
-    public static void isRailRoadFree(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, int[] playersJailTimeCounter, String[] fieldsInitialPrices, boolean[] isPlayerActive, int iteration) {
+    public static void isRailRoadFree(String[][] fields, String[][] communityChest, String[] chanceCards, String[] playersName, int[] playersMoney, int[] playersPosition, int[] playersJailTimeCounter, String[] fieldsInitialPrices, boolean[] isPlayerActive, int iteration,int diceSum) {
         Scanner sc = new Scanner(System.in);
         //if the field is free/empty
         if (fields[1][playersPosition[iteration]].equals("")) {
@@ -413,7 +426,7 @@ public class PlayGame {
                     break;
                 default:
                     System.out.println("Invalid choice!!!");
-                    isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                    isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                     break;
             }
             //if the field has Owner
@@ -488,13 +501,11 @@ public class PlayGame {
                     break;
                 default:
                     System.out.println("Invalid choice!!!");
-                    isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration);
+                    isFieldFree(fields, communityChest, chanceCards, playersName, playersMoney, playersPosition, playersJailTimeCounter, fieldsInitialPrices, isPlayerActive, iteration,diceSum);
                     break;
             }
             //if the field have Owner
         } else if (!fields[1][playersPosition[iteration]].equals("")) {
-            //Player pays rent to the Owner of the field
-            //if Player has enough money
             //chanceCards[0][5]
 
             if (fields[1][playersPosition[iteration]].equals(playersName[iteration])) {      //checks if Player is the owner of the field
@@ -512,6 +523,8 @@ public class PlayGame {
                     multiplier = 10;
                 }
                 int total=diceSum*multiplier;
+
+                //if Player has enough money
                 if (playersMoney[iteration] > total) {
                     System.out.println(playersName[iteration] + " paid " + total + " to " + fields[1][playersPosition[iteration]]);
                     playersMoney[iteration] -= total;
@@ -526,6 +539,7 @@ public class PlayGame {
                 }
                 //if Player does NOT have enough money
                 else if (playersMoney[iteration] < diceSum * multiplier) {
+                    System.out.println(playersName[iteration] + " is the owner of " + fields[0][playersPosition[iteration]]);
                     deletePlayer(fields, playersName, fieldsInitialPrices, isPlayerActive, iteration);
                 }
             }
