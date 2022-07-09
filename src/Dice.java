@@ -40,8 +40,17 @@ public class Dice {
                     promptEnterKey();
                     dice1 = Dice.throwDice();
                     dice2 = Dice.throwDice();
-                    if (dice1==dice2){pairCount++;}
+                    if (dice1 == dice2) {
+                        pairCount++;
+                        System.out.println("Pair Count = " + pairCount);
+                        if (pairCount == 3) {
+                            playersJailTimeCounter[iteration] = 3;
+                            System.out.println(playersName[iteration] + " threw pair 3 times in a row and he goes to JAIL!");
+                            playersPosition[iteration] = 10;
+                        }
+                    }
                     System.out.println(playersName[iteration] + " threw Dice " + dice1 + " and " + dice2);
+
                     if (playersJailTimeCounter[iteration] == 0) {
                         MethodsPlayer.setPlayerPosition(playersPosition, playersMoney, iteration, dice1 + dice2);//player's NEW position is applied to arr index
                         System.out.println(playersName[iteration] + "'s position is " + playersPosition[iteration] + " -\"" + fields[0][playersPosition[iteration]] + "\"");

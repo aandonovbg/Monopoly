@@ -263,7 +263,6 @@ public class MethodsField {
     }
 
 
-
     public static String[] chanceCards() {
         //[0][0]=cardsText
         String[] chanceCards = new String[13];
@@ -324,7 +323,7 @@ public class MethodsField {
     }
 
     public static String[] fieldsInitialPrices() {
-        String [] fieldsInitialPrices=new String[40];
+        String[] fieldsInitialPrices = new String[40];
         fieldsInitialPrices[0] = "";
         fieldsInitialPrices[1] = "60";
         fieldsInitialPrices[2] = "Community Chest";
