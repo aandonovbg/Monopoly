@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '…\test\services\SortListTest.java'" />
-    <option name="defaultScopeName" value="File '…\test\services\SortListTest.java'" />
-    <option name="SEARCH_SCOPE" value="File '…\test\services\SortListTest.java'" />
+    <option name="customScope" value="Project 'crud-demo2'" />
+    <option name="defaultScopeName" value="Project 'crud-demo2'" />
+    <option name="SEARCH_SCOPE" value="Project 'crud-demo2'" />
     <mask>*.css</mask>
     <mask>*.html</mask>
     <mask>*.xml</mask>
