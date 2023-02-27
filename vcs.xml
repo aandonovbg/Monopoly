@@ -22,6 +22,10 @@
           <option name="url" value="https://github.com/Valyo96/WORK.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/dropways/deskapp.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\a\Documents\JAVA\Module 3" />
