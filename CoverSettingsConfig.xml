@@ -1,0 +1,5 @@
+<application>
+  <component name="CoverSettingsConfig">
+    <option name="currentTestFramework" value="JUNIT5" />
+  </component>
+</application>
